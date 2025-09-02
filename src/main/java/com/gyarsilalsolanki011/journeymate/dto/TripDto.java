@@ -1,6 +1,6 @@
 package com.gyarsilalsolanki011.journeymate.dto;
 
-import com.gyarsilalsolanki011.journeymate.enums.Status;
+import com.gyarsilalsolanki011.journeymate.enums.TripStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,5 +15,5 @@ public class TripDto {
     private LocalDate startDate;
     private LocalDate endDate;
     private Double price;
-    private Status status;
+    private TripStatus tripStatus;
 }
