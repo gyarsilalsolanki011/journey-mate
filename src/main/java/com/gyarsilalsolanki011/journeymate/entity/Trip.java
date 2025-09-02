@@ -1,5 +1,6 @@
 package com.gyarsilalsolanki011.journeymate.entity;
 
+import com.gyarsilalsolanki011.journeymate.dto.TripDto;
 import com.gyarsilalsolanki011.journeymate.enums.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -10,6 +11,8 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "trips_db")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,5 +40,13 @@ public class Trip {
     public boolean isEndDateAfterStartDate() {
         if (startDate == null || endDate == null) return true; // handled by @NotNull already
         return endDate.isAfter(startDate);
+    }
+
+    public Trip(TripDto tripDto) {
+        this.destination = tripDto.getDestination();
+        this.startDate = tripDto.getStartDate();
+        this.endDate = tripDto.getEndDate();
+        this.price = tripDto.getPrice();
+        this.status = tripDto.getStatus();
     }
 }
