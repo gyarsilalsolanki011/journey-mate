@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(TripServiceException.class)
-    public ResponseEntity<ErrorResponse> handleTripNotFoundException(TripServiceException ex, WebRequest request){
+    @ExceptionHandler(TripNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleTripNotFoundException(TripNotFoundException ex, WebRequest request){
         ErrorResponse error = new ErrorResponse(
                 LocalDateTime.now(),
                 HttpStatus.NOT_FOUND.value(),
