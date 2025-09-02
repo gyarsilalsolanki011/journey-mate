@@ -1,7 +1,7 @@
 package com.gyarsilalsolanki011.journeymate.entity;
 
 import com.gyarsilalsolanki011.journeymate.dto.TripDto;
-import com.gyarsilalsolanki011.journeymate.enums.Status;
+import com.gyarsilalsolanki011.journeymate.enums.TripStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -33,7 +33,7 @@ public class Trip {
     private Double price;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private TripStatus tripStatus;
 
     // ✅ Custom validation
     @AssertTrue(message = "End date must be after start date")
@@ -47,6 +47,6 @@ public class Trip {
         this.startDate = tripDto.getStartDate();
         this.endDate = tripDto.getEndDate();
         this.price = tripDto.getPrice();
-        this.status = tripDto.getStatus();
+        this.tripStatus = tripDto.getTripStatus();
     }
 }

@@ -11,7 +11,7 @@ public class TripMapper {
         dto.setStartDate(trip.getStartDate());
         dto.setEndDate(trip.getEndDate());
         dto.setPrice(trip.getPrice());
-        dto.setStatus(trip.getStatus());
+        dto.setTripStatus(trip.getTripStatus());
         return dto;
     }
 
@@ -21,7 +21,7 @@ public class TripMapper {
         trip.setStartDate(dto.getStartDate());
         trip.setEndDate(dto.getEndDate());
         trip.setPrice(dto.getPrice());
-        trip.setStatus(dto.getStatus());
+        trip.setTripStatus(dto.getTripStatus());
         return trip;
     }
 

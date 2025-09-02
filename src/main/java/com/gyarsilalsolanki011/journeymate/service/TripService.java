@@ -3,8 +3,12 @@ package com.gyarsilalsolanki011.journeymate.service;
 import com.gyarsilalsolanki011.journeymate.dto.TripDto;
 import com.gyarsilalsolanki011.journeymate.entity.Trip;
 import com.gyarsilalsolanki011.journeymate.entity.TripSummary;
+import com.gyarsilalsolanki011.journeymate.enums.TripStatus;
+import com.gyarsilalsolanki011.journeymate.exception.TripNotFoundException;
+import com.gyarsilalsolanki011.journeymate.exception.TripServiceException;
 import com.gyarsilalsolanki011.journeymate.mapper.TripMapper;
 import com.gyarsilalsolanki011.journeymate.repository.TripRepository;
+import com.gyarsilalsolanki011.journeymate.util.TripStatusParser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,10 +30,10 @@ public class TripService {
             Trip trip = TripMapper.toEntity(tripDto);
             try {
                 if (!trip.isEndDateAfterStartDate()) {
-                    throw new RuntimeException("End date must be after start date");
+                    throw new TripServiceException("End date must be after start date");
                 }
             } catch (Exception e) {
-                throw new RuntimeException("End date must be after start date", e);
+                throw new TripServiceException("Invalid date format", e);
             }
             tripRepository.save(trip);
             return "Trip created successfully";
@@ -44,34 +48,34 @@ public class TripService {
             Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sort[0]));
             return tripRepository.findAll(pageable).map(TripMapper::toDto);
         } catch (Exception e) {
-            throw new RuntimeException("Error fetching all trips", e);
+            throw new TripNotFoundException("Error fetching trips", e);
         }
     }
 
     public TripDto getTripById(int id) {
         try {
             Trip trip = tripRepository.findById(id)
-                    .orElseThrow(() -> new RuntimeException("Trip not found with id: " + id));
+                    .orElseThrow(() -> new TripNotFoundException("Trip not found with id: " + id));
             return TripMapper.toDto(trip);
         } catch (Exception e) {
-            throw new RuntimeException("Error fetching trip by id", e);
+            throw new TripNotFoundException("Error fetching trip by id", e);
         }
     }
 
     public TripDto updateTrip(Integer tripId, TripDto tripDto) {
         try {
             Trip existingTrip = tripRepository.findById(tripId)
-                    .orElseThrow(() -> new RuntimeException("Trip not found with id: " + tripId));
+                    .orElseThrow(() -> new TripNotFoundException("Trip not found with id: " + tripId));
             existingTrip.setDestination(tripDto.getDestination());
             existingTrip.setStartDate(tripDto.getStartDate());
             if (existingTrip.isEndDateAfterStartDate()){
                 existingTrip.setEndDate(tripDto.getEndDate());
             } else {
-                throw new RuntimeException("End date must be after start date");
+                throw new TripServiceException("End date must be after start date");
             }
             existingTrip.setEndDate(tripDto.getEndDate());
             existingTrip.setPrice(tripDto.getPrice());
-            existingTrip.setStatus(tripDto.getStatus());
+            existingTrip.setTripStatus(tripDto.getTripStatus());
             Trip updatedTrip = tripRepository.save(existingTrip);
             return TripMapper.toDto(updatedTrip);
         } catch (Exception e) {
@@ -101,8 +105,9 @@ public class TripService {
 
     public List<TripDto> getTripsByStatus(String status) {
         try {
+            TripStatus tripStatus = TripStatusParser.fromString(status);
             List<Trip> trips = tripRepository.findAll().stream()
-                    .filter(trip -> trip.getStatus().name().equalsIgnoreCase(status))
+                    .filter(trip -> trip.getTripStatus().name().equalsIgnoreCase(tripStatus.name()))
                     .toList();
             return trips.stream().map(TripMapper::toDto).toList();
         } catch (Exception e) {
