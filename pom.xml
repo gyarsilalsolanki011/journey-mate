@@ -105,6 +105,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>spring-boot-journey-mate</finalName>  <!-- Jar name -->
 	</build>
 
 </project>
