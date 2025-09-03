@@ -38,17 +38,17 @@ journeymate/
 ## 🚀 API Endpoints
 **🔹 Trip Management**
 
-| Method   | Endpoint                                                       | Description                               |
-|----------|----------------------------------------------------------------|-------------------------------------------|
-| `POST`   | `/api/trips`                                                   | Create a new trip                         |
-| `GET`    | `/api/trips`                                                   | Get all trips (with pagination & sorting) |
-| `GET`    | `/api/trips/{id}`                                              | Get trip by ID                            |
-| `PUT`    | `/api/trips/{id}`                                              | Update a trip                             |
-| `DELETE` | `/api/trips/{id}`                                              | Delete a trip                             |
-| `GET`    | `/api/trips/search?destination=Paris`                          | Search trips by destination               |
-| `GET`    | `/api/trips?status=PLANNED`                                    | Filter trip by status                     |
-| `GET`    | `/api/trips/daterange?startDate=2025-09-01&endDate=2025-09-30` | Filter trips by date range                |
-| `GET`    | `/api/trips/summary`                                           | Get trip summary (total trips, min, max)  |
+| Method   | Endpoint                                                       | Description                                        |
+|----------|----------------------------------------------------------------|----------------------------------------------------|
+| `POST`   | `/api/trips`                                                   | Create a new trip                                  |
+| `GET`    | `/api/trips`                                                   | Get all trips (with pagination & sorting)          |
+| `GET`    | `/api/trips/{id}`                                              | Get trip by ID                                     |
+| `PUT`    | `/api/trips/{id}`                                              | Update a trip                                      |
+| `DELETE` | `/api/trips/{id}`                                              | Delete a trip                                      |
+| `GET`    | `/api/trips/search?destination=Paris`                          | Search trips by destination                        |
+| `GET`    | `/api/trips?status=PLANNED`                                    | Filter trip by status                              |
+| `GET`    | `/api/trips/daterange?startDate=2025-09-01&endDate=2025-09-30` | Filter trips by date range                         |
+| `GET`    | `/api/trips/summary`                                           | Get trip summary (total trips, minPrice, maxPrice) |
 
 </br>**🔹 Example Requests**
 
@@ -88,6 +88,7 @@ Handled globally using `@ControllerAdvice:`
 Response Example:
 ```json
 {
+  "timestamp": "2024-10-01T12:00:00.000+00:00",
   "status": 404,
   "message": "Trip not found with ID: 100",
   "path": "/api/trips/100"
