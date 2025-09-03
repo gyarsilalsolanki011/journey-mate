@@ -38,14 +38,17 @@ journeymate/
 ## 🚀 API Endpoints
 **🔹 Trip Management**
 
-| Method   | Endpoint                              | Description                               |
-| -------- | ------------------------------------- | ----------------------------------------- |
-| `POST`   | `/api/trips`                          | Create a new trip                         |
-| `GET`    | `/api/trips/{id}`                     | Get trip by ID                            |
-| `GET`    | `/api/trips`                          | Get all trips (with pagination & sorting) |
-| `GET`    | `/api/trips/search?destination=Paris` | Search trips by destination               |
-| `PUT`    | `/api/trips/{id}`                     | Update a trip                             |
-| `DELETE` | `/api/trips/{id}`                     | Delete a trip                             |
+| Method   | Endpoint                                                       | Description                               |
+|----------|----------------------------------------------------------------|-------------------------------------------|
+| `POST`   | `/api/trips`                                                   | Create a new trip                         |
+| `GET`    | `/api/trips`                                                   | Get all trips (with pagination & sorting) |
+| `GET`    | `/api/trips/{id}`                                              | Get trip by ID                            |
+| `PUT`    | `/api/trips/{id}`                                              | Update a trip                             |
+| `DELETE` | `/api/trips/{id}`                                              | Delete a trip                             |
+| `GET`    | `/api/trips/search?destination=Paris`                          | Search trips by destination               |
+| `GET`    | `/api/trips?status=PLANNED`                                    | Filter trip by status                     |
+| `GET`    | `/api/trips/daterange?startDate=2025-09-01&endDate=2025-09-30` | Filter trips by date range                |
+| `GET`    | `/api/trips/summary`                                           | Get trip summary (total trips, min, max)  |
 
 </br>**🔹 Example Requests**
 
