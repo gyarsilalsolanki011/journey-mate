@@ -12,8 +12,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class TripDto {
     private String destination;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String startDate;
+    private String endDate;
     private Double price;
     private TripStatus tripStatus;
 }
