@@ -82,7 +82,7 @@ GET /api/trips/search?destination=Paris
 Handled globally using `@ControllerAdvice:`
 - `TripNotFoundException` → 404 NOT FOUND
 - `InvalidTripStatusException` → 400 BAD REQUEST
-- `TripServiceException` → 500 INTERNAL SERVER ERROR
+- `TripServiceException` → 400 BAD REQUEST
 - `Generic Exception` → 500 INTERNAL SERVER ERROR
 
 Response Example:
