@@ -1,29 +1,31 @@
 # 🌍 JourneyMate – Trip Management Application
-**JourneyMate** is a Spring Boot–based Trip Management System that allows users to create, search, and manage trips.
-It provides REST APIs for trip booking, searching by destination, filtering, and managing trip statuses with proper exception handling.
+**JourneyMate** is a ***Spring Boot + Hibernate (JPA)*** based Trip Management System built as part of the **DS-SEP-2025 Assignment**.
+It provides ***REST APIs*** to ***create, search, filter, update, delete,*** and ***summarize*** trips with proper validation and exception handling.
 
 ## ✨ Features
 - ✅ CRUD Operations for trips (Create, Read, Update, Delete)
 - ✅ Pagination & Sorting for listing trips
-- ✅ Search Trips by Destination (partial & full match)
-- ✅ Enum-based Trip Status (e.g., PLANNED, COMPLETED, CANCELLED)
+- ✅ Search trips by destination (partial & full match)
+- ✅ Filter trips by status (PLANNED, ONGOING, COMPLETED)
+- ✅ Filter trips between start & end dates
+- ✅ Trip summary (total, min, max, average price)
+- ✅ DTO ↔ Entity mapping via Mapper layer
 - ✅ Global Exception Handling with @ControllerAdvice
-- ✅ DTO–Entity Mapping with Mapper layer
-- ✅ Repository Layer with Spring Data JPA
-- ✅ Service Layer with Business Logic and try–catch handling
-- ✅ RESTful APIs with ResponseEntity responses
+- ✅ Swagger (OpenAPI) Documentation
+- ✅ Unit Tests (JUnit + Mockito)
+- ✅ Postman Collection for API Testing
 
 ## 📂 Project Structure
 ```graphql
 journeymate/
 ├── controller/           # REST controllers (TripController)
-├── dto/                  # Data Transfer Objects (TripDto, ErrorResponseDto)
+├── dto/                  # Data Transfer Objects (TripDto, ErrorResponse)
 ├── entity/               # JPA Entities (Trip.java)
 ├── enum/                 # Enums (TripStatus.java)
 ├── exception/            # Custom exceptions + GlobalExceptionHandler
 ├── mapper/               # DTO ↔ Entity mappers
 ├── repository/           # Spring Data JPA Repositories
-├── service/              # Service interfaces & implementations
+├── service/              # Service layer with business logic
 ├── util/                 # Utility classes
 └── JourneyMateApplication.java  # Main Spring Boot app
 ```
@@ -38,17 +40,18 @@ journeymate/
 ## 🚀 API Endpoints
 **🔹 Trip Management**
 
-| Method   | Endpoint                                                       | Description                                        |
-|----------|----------------------------------------------------------------|----------------------------------------------------|
-| `POST`   | `/api/trips`                                                   | Create a new trip                                  |
-| `GET`    | `/api/trips`                                                   | Get all trips (with pagination & sorting)          |
-| `GET`    | `/api/trips/{id}`                                              | Get trip by ID                                     |
-| `PUT`    | `/api/trips/{id}`                                              | Update a trip                                      |
-| `DELETE` | `/api/trips/{id}`                                              | Delete a trip                                      |
-| `GET`    | `/api/trips/search?destination=Paris`                          | Search trips by destination                        |
-| `GET`    | `/api/trips?status=PLANNED`                                    | Filter trip by status                              |
-| `GET`    | `/api/trips/daterange?startDate=2025-09-01&endDate=2025-09-30` | Filter trips by date range                         |
-| `GET`    | `/api/trips/summary`                                           | Get trip summary (total trips, minPrice, maxPrice) |
+| Method   | Endpoint                                               | Description                                   |
+| -------- | ------------------------------------------------------ | --------------------------------------------- |
+| `POST`   | `/api/trips`                                           | Create a new trip                             |
+| `GET`    | `/api/trips`                                           | Get all trips (with pagination & sorting)     |
+| `GET`    | `/api/trips/{id}`                                      | Get trip by ID                                |
+| `PUT`    | `/api/trips/{id}`                                      | Update a trip                                 |
+| `DELETE` | `/api/trips/{id}`                                      | Delete a trip                                 |
+| `GET`    | `/api/trips/search?destination=Paris`                  | Search trips by destination                   |
+| `GET`    | `/api/trips/filter?status=PLANNED`                     | Filter trips by status                        |
+| `GET`    | `/api/trips/daterange?start=2025-09-01&end=2025-09-30` | Filter trips by date range                    |
+| `GET`    | `/api/trips/summary`                                   | Get trip summary (total, min, max, avg price) |
+
 
 </br>**🔹 Example Requests**
 
@@ -58,16 +61,15 @@ POST /api/trips
 Content-Type: application/json
 
 {
-  "title": "Paris Vacation",
   "destination": "Paris",
   "startDate": "2025-09-10",
   "endDate": "2025-09-20",
-  "price": 50000,
+  "price": 1500.00,
   "status": "PLANNED"
 }
 ```
 
-Get Trips (with Pagination & Sorting)
+Get Trips (Pagination & Sorting)
 ```http
 GET /api/trips?page=0&size=5&sort=startDate,asc
 ```
@@ -77,13 +79,28 @@ Search by Destination
 GET /api/trips/search?destination=Paris
 ```
 
+Filter by Status
+```http
+GET /api/trips/filter?status=ONGOING
+```
+
+Trips Between Dates
+```http
+GET /api/trips/daterange?start=2025-09-01&end=2025-09-30
+```
+
+Trip Summary
+```http
+GET /api/trips/summary
+```
+
 ## 🛡️ Exception Handling
 
-Handled globally using `@ControllerAdvice:`
+Global exceptions handled via `@ControllerAdvice:`
 - `TripNotFoundException` → 404 NOT FOUND
 - `InvalidTripStatusException` → 400 BAD REQUEST
-- `TripServiceException` → 500 INTERNAL SERVER ERROR
-- `Generic Exception` → 500 INTERNAL SERVER ERROR
+- `TripServiceException` → 400 BAD REQUEST
+- Generic `Exception` → 500 INTERNAL SERVER ERROR
 
 Response Example:
 ```json
@@ -97,28 +114,53 @@ Response Example:
 
 ## ▶️ How to Run
 
-1. Clone the repo
+1. Clone Repository
 ```bash
-https://github.com/gyarsilalsolanki011/DS-SEP-2025-178.git
-cd DS-SEP-2025-1725-178
+git clone https://github.com/gyarsilalsolanki011/DS-SEP-2025-178.git
+cd DS-SEP-2025-178
 ```
 
-2. Configure MySQL DB in `application.properties`
+2. Set up MySQL Database
+```sql
+CREATE DATABASE trips_db;
+SOURCE tripdb.sql;   -- path to the SQL script
+```
+
+3. Configure MySQL DB in `application.properties`
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/journeymate
+spring.datasource.url=jdbc:mysql://localhost:3306/trips_db
 spring.datasource.username=root
-spring.datasource.password=yourpassword
+spring.datasource.password=your_password
 spring.jpa.hibernate.ddl-auto=update
 ```
-3. Run the app
+4. Run application
 ```bash
 mvn spring-boot:run
 ```
 
-4. Access API at:
-```bash
-http://localhost:8080/api/trips
+5. Access APIs:
+- Base URL → `http://localhost:8080/api/trips`
+- Swagger → `http://localhost:8080/swagger-ui.html`
+
+
+## 🧪 Testing
+
+**Run Unit Tests**
+```bash    
+mvn test
 ```
+**Run Postman Collection**
+
+Import `TripCollection.postman_collection.json` into Postman and execute requests.
+
+
+## 📦 Deliverables (as per assignment)
+- ✅ Complete Spring Boot Project on GitHub
+- ✅ Public repository: DS-SEP-2025-178
+- ✅ README with setup + API docs
+- ✅ Postman Collection (provided in repo)
+- ✅ Database Script (tripdb.sql)
+
 
 ## 👨‍💻 Developer
 
