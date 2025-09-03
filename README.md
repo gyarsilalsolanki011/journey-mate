@@ -55,7 +55,6 @@ POST /api/trips
 Content-Type: application/json
 
 {
-  "title": "Paris Vacation",
   "destination": "Paris",
   "startDate": "2025-09-10",
   "endDate": "2025-09-20",
