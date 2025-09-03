@@ -8,6 +8,8 @@ import lombok.*;
 
 import java.time.LocalDate;
 
+import static com.gyarsilalsolanki011.journeymate.mapper.TripMapper.FORMATTER;
+
 @Data
 @Entity
 @Table(name = "trips_db")
@@ -44,8 +46,8 @@ public class Trip {
 
     public Trip(TripDto tripDto) {
         this.destination = tripDto.getDestination();
-        this.startDate = tripDto.getStartDate();
-        this.endDate = tripDto.getEndDate();
+        this.startDate = LocalDate.parse(tripDto.getStartDate(), FORMATTER);
+        this.endDate = LocalDate.parse(tripDto.getEndDate(), FORMATTER);
         this.price = tripDto.getPrice();
         this.tripStatus = tripDto.getTripStatus();
     }
