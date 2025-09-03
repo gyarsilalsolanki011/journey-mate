@@ -100,7 +100,7 @@ Global exceptions handled via `@ControllerAdvice:`
 - `TripNotFoundException` → 404 NOT FOUND
 - `InvalidTripStatusException` → 400 BAD REQUEST
 - `TripServiceException` → 400 BAD REQUEST
-- Generic `Exception` → 500 INTERNAL SERVER ERROR
+- `Generic Exception` → 500 INTERNAL SERVER ERROR
 
 Response Example:
 ```json
