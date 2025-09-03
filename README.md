@@ -1,6 +1,8 @@
 # 🌍 JourneyMate – Trip Management Application
-**JourneyMate** is a ***Spring Boot + Hibernate (JPA)*** based Trip Management System built as part of the **DS-SEP-2025 Assignment**.
-It provides ***REST APIs*** to ***create, search, filter, update, delete,*** and ***summarize*** trips with proper validation and exception handling.
+**JourneyMate** is a *Spring Boot + Hibernate (JPA)* based Trip Management System built as part of the **DS-SEP-2025 Assignment**.
+It provides ***REST APIs*** to *create, search, filter, update, delete,* and *summarize* trips with proper validation and exception handling.
+
+</br>
 
 ## ✨ Features
 - ✅ CRUD Operations for trips (Create, Read, Update, Delete)
@@ -14,6 +16,8 @@ It provides ***REST APIs*** to ***create, search, filter, update, delete,*** and
 - ✅ Swagger (OpenAPI) Documentation
 - ✅ Unit Tests (JUnit + Mockito)
 - ✅ Postman Collection for API Testing
+
+</br>
 
 ## 📂 Project Structure
 ```graphql
@@ -30,12 +34,16 @@ journeymate/
 └── JourneyMateApplication.java  # Main Spring Boot app
 ```
 
+</br>
+
 ## ⚙️ Tech Stack
 - **Backend:** Java 17, Spring Boot
 - **Database:** MySQL (with JPA/Hibernate)
 - **Build Tool:** Maven
 - **Testing:** JUnit & Mockito
 - **API Testing:** Postman / Swagger UI
+
+</br>
 
 ## 🚀 API Endpoints
 **🔹 Trip Management**
@@ -94,6 +102,8 @@ Trip Summary
 GET /api/trips/summary
 ```
 
+</br>
+
 ## 🛡️ Exception Handling
 
 Global exceptions handled via `@ControllerAdvice:`
@@ -111,6 +121,8 @@ Response Example:
   "path": "/api/trips/100"
 }
 ```
+
+</br>
 
 ## ▶️ How to Run
 
@@ -142,6 +154,7 @@ mvn spring-boot:run
 - Base URL → `http://localhost:8080/api/trips`
 - Swagger → `http://localhost:8080/swagger-ui.html`
 
+</br>
 
 ## 🧪 Testing
 
@@ -161,6 +174,7 @@ Import `TripCollection.postman_collection.json` into Postman and execute request
 - ✅ Postman Collection (provided in repo)
 - ✅ Database Script (tripdb.sql)
 
+</br>
 
 ## 👨‍💻 Developer
 
