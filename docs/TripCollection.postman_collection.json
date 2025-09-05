@@ -1,0 +1,271 @@
+{
+	"info": {
+		"_postman_id": "26e65ce8-4451-4dba-ba8c-2c549e4c91eb",
+		"name": "TripCollection",
+		"description": "**TripCollection** is the Postman collection for the **JourneyMate Trip Management Application**.\n\nIt contains all the API requests grouped into CRUD and Analytics operations.\n\nUse this collection to test and validate trip lifecycle management, filtering, and summary analytics with a preconfigured environment (`JourneyMate-Local`).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33712155"
+	},
+	"item": [
+		{
+			"name": "Crud APIs",
+			"item": [
+				{
+					"name": "Create Trip",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"destination\": \"Hydrabad\",\r\n    \"startDate\": \"2026-01-10\",\r\n    \"endDate\": \"2026-02-20\",\r\n    \"price\": 50000,\r\n    \"status\": \"PLANNED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}",
+							"host": [
+								"{{base-url}}"
+							]
+						},
+						"description": "Creates a new trip with destination, dates, price, and status."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Trips",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}?page=0&size=10&sort=id, asc",
+							"host": [
+								"{{base-url}}"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "sort",
+									"value": "id, asc"
+								}
+							]
+						},
+						"description": "Retrieves all trips with support for pagination and sorting."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Trip",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/4",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"4"
+							]
+						},
+						"description": "Fetches a single trip by its unique ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Trip",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"destination\": \"Tokyo\",\r\n    \"startDate\": \"2025-12-10\",\r\n    \"endDate\": \"2026-01-20\",\r\n    \"price\": 50000,\r\n    \"status\": \"PLANNED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/3",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"3"
+							]
+						},
+						"description": "Updates details of an existing trip by ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Trip",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/4",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"4"
+							]
+						},
+						"description": "Removes a trip permanently by ID."
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains all **core CRUD APIs** for managing trips.  \n  \nYou can create new trips, fetch all trips with pagination & sorting, retrieve a trip by ID, update existing trips, and delete trips.  \n  \nThese requests represent the basic operations required to maintain the trip database."
+		},
+		{
+			"name": "Analytics APIs",
+			"item": [
+				{
+					"name": "search-by-dest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/trips?destination=paris",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trips"
+							],
+							"query": [
+								{
+									"key": "destination",
+									"value": "paris"
+								}
+							]
+						},
+						"description": "Finds trips matching a given destination (partial or full match)."
+					},
+					"response": []
+				},
+				{
+					"name": "filter-by-status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/trips?status=PLANNED",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trips"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "PLANNED"
+								}
+							]
+						},
+						"description": "Retrieves trips filtered by status (`PLANNED`, `ONGOING`, `COMPLETED`)."
+					},
+					"response": []
+				},
+				{
+					"name": "filter-by-date-range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/trips/daterange?startDate=2025-09-10&enddate=2025-10-10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trips",
+								"daterange"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-09-10"
+								},
+								{
+									"key": "enddate",
+									"value": "2025-10-10"
+								}
+							]
+						},
+						"description": "Gets trips starting and ending between the given dates."
+					},
+					"response": []
+				},
+				{
+					"name": "get-summary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/trips/summary",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trips",
+								"summary"
+							]
+						},
+						"description": "Returns total trips, min price, max price, and average price."
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains **advanced analytics and search APIs** for trips.  \n  \nYou can search trips by destination, filter by status, fetch trips within a date range, and get an aggregated trip summary (total trips, min/max price, average price).  \n  \nThese requests provide insights and filtering capabilities beyond basic CRUD."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base-url",
+			"value": ""
+		}
+	]
+}
