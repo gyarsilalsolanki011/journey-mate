@@ -15,5 +15,5 @@ public class TripDto {
     private String startDate;
     private String endDate;
     private Double price;
-    private TripStatus tripStatus;
+    private String tripStatus;
 }

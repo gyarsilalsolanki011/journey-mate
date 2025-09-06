@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"destination\": \"Hydrabad\",\r\n    \"startDate\": \"2026-01-10\",\r\n    \"endDate\": \"2026-02-20\",\r\n    \"price\": 50000,\r\n    \"status\": \"PLANNED\"\r\n}",
+							"raw": "{\r\n    \"destination\": \"Banglooro\",\r\n    \"startDate\": \"2026-02-10\",\r\n    \"endDate\": \"2027-02-20\",\r\n    \"price\": 50000,\r\n    \"tripStatus\": \"PLANNED\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -25,9 +25,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{base-url}}",
+							"raw": "http://localhost:8080/api/trips",
+							"protocol": "http",
 							"host": [
-								"{{base-url}}"
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trips"
 							]
 						},
 						"description": "Creates a new trip with destination, dates, price, and status."
@@ -40,14 +46,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}?page=0&size=10&sort=id, asc",
+							"raw": "http://localhost:8080/api/trips?page=1&size=10&sort=id, asc",
+							"protocol": "http",
 							"host": [
-								"{{base-url}}"
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trips"
 							],
 							"query": [
 								{
 									"key": "page",
-									"value": "0"
+									"value": "1"
 								},
 								{
 									"key": "size",
@@ -69,12 +81,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/4",
+							"raw": "http://localhost:8080/api/trips/12",
+							"protocol": "http",
 							"host": [
-								"{{base-url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
-								"4"
+								"api",
+								"trips",
+								"12"
 							]
 						},
 						"description": "Fetches a single trip by its unique ID."
@@ -88,7 +104,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"destination\": \"Tokyo\",\r\n    \"startDate\": \"2025-12-10\",\r\n    \"endDate\": \"2026-01-20\",\r\n    \"price\": 50000,\r\n    \"status\": \"PLANNED\"\r\n}",
+							"raw": "{\r\n    \"destination\": \"Hydrabad\",\r\n    \"startDate\": \"2025-12-10\",\r\n    \"endDate\": \"2026-01-20\",\r\n    \"price\": 50000,\r\n    \"tripStatus\": \"PLANNED\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -96,12 +112,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base-url}}/3",
+							"raw": "{{base-url}}/12",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
-								"3"
+								"12"
 							]
 						},
 						"description": "Updates details of an existing trip by ID."
@@ -114,12 +130,16 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/4",
+							"raw": "http://localhost:8080/api/trips/11",
+							"protocol": "http",
 							"host": [
-								"{{base-url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
-								"4"
+								"api",
+								"trips",
+								"11"
 							]
 						},
 						"description": "Removes a trip permanently by ID."
@@ -138,19 +158,21 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/trips?destination=paris",
+							"raw": "http://localhost:8080/api/trips/search?destination=Hydrabad",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"trips"
+								"trips",
+								"search"
 							],
 							"query": [
 								{
 									"key": "destination",
-									"value": "paris"
+									"value": "Hydrabad"
 								}
 							]
 						},
@@ -164,19 +186,21 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/trips?status=PLANNED",
+							"raw": "http://localhost:8080/api/trips/filter?status=Planned",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"trips"
+								"trips",
+								"filter"
 							],
 							"query": [
 								{
 									"key": "status",
-									"value": "PLANNED"
+									"value": "Planned"
 								}
 							]
 						},
@@ -190,7 +214,8 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/trips/daterange?startDate=2025-09-10&enddate=2025-10-10",
+							"raw": "http://localhost:8080/api/trips/daterange?startDate=2025-08-10&endDate=2025-11-10",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
@@ -203,11 +228,11 @@
 							"query": [
 								{
 									"key": "startDate",
-									"value": "2025-09-10"
+									"value": "2025-08-10"
 								},
 								{
-									"key": "enddate",
-									"value": "2025-10-10"
+									"key": "endDate",
+									"value": "2025-11-10"
 								}
 							]
 						},
@@ -221,7 +246,8 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/trips/summary",
+							"raw": "http://localhost:8080/api/trips/summary",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
