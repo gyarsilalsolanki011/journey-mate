@@ -10,22 +10,23 @@ import java.time.LocalDate;
 public class TripDateValidator implements ConstraintValidator<ValidTripDates, TripDTO> {
 
     @Override
-    public boolean isValid(TripDTO trip, ConstraintValidatorContext context) {
-        if (trip.getStartDate() == null || trip.getEndDate() == null) {
+    public boolean isValid(TripDTO tripDto, ConstraintValidatorContext context) {
+        if (tripDto.getStartDate() == null || tripDto.getEndDate() == null) {
             return true; // @NotNull handles null checks separately
         }
 
-        try {
-            LocalDate start = TripDateParser.parseDate(trip.getStartDate().toString(), "startDate");
-            LocalDate end = TripDateParser.parseDate(trip.getEndDate().toString(), "endDate");
+        LocalDate startDate = TripDateParser.parseDate(tripDto.getStartDate().toString(), "startDate");
+        LocalDate endDate = TripDateParser.parseDate(tripDto.getEndDate().toString(), "endDate");
 
-            return end.isAfter(start);
-        } catch (IllegalArgumentException e) {
+        if (startDate.isAfter(endDate)) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(e.getMessage())
+            context.buildConstraintViolationWithTemplate("Start date must not be after end date")
+                    .addPropertyNode("startDate")   // 👈 attach to the field
                     .addConstraintViolation();
             return false;
         }
+
+        return true;
     }
 }
 

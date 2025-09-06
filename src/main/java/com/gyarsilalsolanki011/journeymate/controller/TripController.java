@@ -3,15 +3,18 @@ package com.gyarsilalsolanki011.journeymate.controller;
 import com.gyarsilalsolanki011.journeymate.dto.TripDTO;
 import com.gyarsilalsolanki011.journeymate.entity.TripSummary;
 import com.gyarsilalsolanki011.journeymate.service.TripService;
+import com.gyarsilalsolanki011.journeymate.validator.ValidTripStatus;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/trips")
+@Validated
 public class TripController {
     private final TripService tripService;
     public TripController(TripService tripService) {
@@ -53,8 +56,8 @@ public class TripController {
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<List<TripDTO>> getTripsByStatus(@RequestParam String status) {
-        return ResponseEntity.ok().body(tripService.getTripsByStatus(status));
+    public ResponseEntity<List<TripDTO>> getTripsByStatus(@ValidTripStatus @RequestParam String tripStatus) {
+        return ResponseEntity.ok().body(tripService.getTripsByStatus(tripStatus));
     }
 
     @GetMapping("/daterange")

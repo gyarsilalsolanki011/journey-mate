@@ -1,5 +1,6 @@
 package com.gyarsilalsolanki011.journeymate.validator;
 
+import com.gyarsilalsolanki011.journeymate.enums.TripStatus;
 import com.gyarsilalsolanki011.journeymate.util.TripStatusParser;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -8,12 +9,16 @@ public class TripStatusValidator implements ConstraintValidator<ValidTripStatus,
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
+        if (value == null || value.isBlank()) {
+            return true; // let @NotBlank handle empties if needed
+        }
+
         try {
-            TripStatusParser.fromString(value);
+            TripStatus.valueOf(value.toUpperCase());
             return true;
         } catch (IllegalArgumentException e) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(e.getMessage())
+            context.buildConstraintViolationWithTemplate("Invalid trip status: " + value)
                     .addConstraintViolation();
             return false;
         }
