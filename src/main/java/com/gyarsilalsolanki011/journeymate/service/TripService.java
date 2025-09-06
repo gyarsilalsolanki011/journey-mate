@@ -1,6 +1,6 @@
 package com.gyarsilalsolanki011.journeymate.service;
 
-import com.gyarsilalsolanki011.journeymate.dto.TripDto;
+import com.gyarsilalsolanki011.journeymate.dto.TripDTO;
 import com.gyarsilalsolanki011.journeymate.entity.Trip;
 import com.gyarsilalsolanki011.journeymate.entity.TripSummary;
 import com.gyarsilalsolanki011.journeymate.enums.TripStatus;
@@ -30,25 +30,16 @@ public class TripService {
         this.tripRepository = tripRepository;
     }
 
-    public String createTrip(TripDto tripDto) {
-        // if TripDto has String dates
-        LocalDate start = TripDateParser.parseDate(tripDto.getStartDate(), "startDate");
-        LocalDate end = TripDateParser.parseDate(tripDto.getEndDate(), "endDate");
-
-        if (end.isBefore(start) || end.isEqual(start)) {
-            throw new TripServiceException("End date must be after start date");
-        }
+    public String createTrip(TripDTO tripDto) {
 
         Trip trip = TripMapper.toEntity(tripDto);
-        trip.setStartDate(start);
-        trip.setEndDate(end);
 
         tripRepository.save(trip);
         return "Trip created successfully";
     }
 
 
-    public Page<TripDto> getAllTrips(int page, int size, String[] sort) {
+    public Page<TripDTO> getAllTrips(int page, int size, String[] sort) {
         if (sort.length < 2) {
             throw new TripServiceException("Sort parameter must include field and direction");
         }
@@ -61,27 +52,20 @@ public class TripService {
         return tripRepository.findAll(pageable).map(TripMapper::toDto);
     }
 
-    public TripDto getTripById(int id) {
+    public TripDTO getTripById(int id) {
         Trip trip = tripRepository.findById(id)
                 .orElseThrow(() -> new TripNotFoundException("Trip not found with id: " + id));
         return TripMapper.toDto(trip);
     }
 
     @Transactional
-    public TripDto updateTrip(Integer tripId, TripDto tripDto) {
+    public TripDTO updateTrip(Integer tripId, TripDTO tripDto) {
         Trip existingTrip = tripRepository.findById(tripId)
                 .orElseThrow(() -> new TripNotFoundException("Trip not found with id: " + tripId));
 
-        LocalDate start = TripDateParser.parseDate(tripDto.getStartDate(), "startDate");
-        LocalDate end = TripDateParser.parseDate(tripDto.getEndDate(), "endDate");
-
-        if (end.isBefore(start) || end.isEqual(start)) {
-            throw new TripServiceException("End date must be after start date");
-        }
-
         existingTrip.setDestination(tripDto.getDestination());
-        existingTrip.setStartDate(start);
-        existingTrip.setEndDate(end);
+        existingTrip.setStartDate(tripDto.getStartDate());
+        existingTrip.setEndDate(tripDto.getEndDate());
         existingTrip.setPrice(tripDto.getPrice());
         existingTrip.setTripStatus(TripStatusParser.fromString(tripDto.getTripStatus()));
 
@@ -97,7 +81,7 @@ public class TripService {
         return "Trip deleted successfully";
     }
 
-    public List<TripDto> searchTripsByDestination(String destination) {
+    public List<TripDTO> searchTripsByDestination(String destination) {
         List<Trip> trips = tripRepository.findByDestinationContainingIgnoreCase(destination);
         if (trips.isEmpty()) {
             throw new TripNotFoundException("No trips found for destination: " + destination);
@@ -105,7 +89,7 @@ public class TripService {
         return trips.stream().map(TripMapper::toDto).toList();
     }
 
-    public List<TripDto> getTripsByStatus(String status) {
+    public List<TripDTO> getTripsByStatus(String status) {
         TripStatus tripStatus = TripStatusParser.fromString(status);
         List<Trip> trips = tripRepository.findByTripStatus(tripStatus);
 
@@ -115,13 +99,11 @@ public class TripService {
         return trips.stream().map(TripMapper::toDto).toList();
     }
 
-    public List<TripDto> getTripsBetweenDates(String startDate, String endDate) {
+    public List<TripDTO> getTripsBetweenDates(String startDate, String endDate) {
         LocalDate start = TripDateParser.parseDate(startDate, "startDate");
         LocalDate end = TripDateParser.parseDate(endDate, "endDate");
 
-        if (end.isBefore(start) || end.isEqual(start)) {
-            throw new TripServiceException("End date must be after start date");
-        }
+        if (start.isAfter(end)) throw new TripServiceException("Start date must not be after end date");
 
         List<Trip> trips = tripRepository.findByStartDateGreaterThanEqualAndEndDateLessThanEqual(start, end);
         if (trips.isEmpty()) {
