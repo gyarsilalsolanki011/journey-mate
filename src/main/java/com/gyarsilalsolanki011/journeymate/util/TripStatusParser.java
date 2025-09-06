@@ -5,6 +5,9 @@ import com.gyarsilalsolanki011.journeymate.exception.InvalidEnumException;
 
 public class TripStatusParser {
     public static TripStatus fromString(String status) {
+        if (status == null || status.isBlank()) {
+            throw new IllegalArgumentException("Trip status cannot be empty");
+        }
         try {
             return TripStatus.valueOf(status.toUpperCase());
         } catch (IllegalArgumentException | NullPointerException e) {
