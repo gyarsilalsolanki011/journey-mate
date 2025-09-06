@@ -18,8 +18,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -85,7 +83,7 @@ public class TripService {
         existingTrip.setStartDate(start);
         existingTrip.setEndDate(end);
         existingTrip.setPrice(tripDto.getPrice());
-        existingTrip.setTripStatus(tripDto.getTripStatus());
+        existingTrip.setTripStatus(TripStatusParser.fromString(tripDto.getTripStatus()));
 
         return TripMapper.toDto(tripRepository.save(existingTrip));
     }

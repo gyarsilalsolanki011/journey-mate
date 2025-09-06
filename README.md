@@ -138,7 +138,7 @@ SOURCE /setup/tripdb.sql;   -- path to the SQL script
 ```
 setup using command line
 ```bash
-mysql -u root -p < setup/tripdb.sql
+mysql -u root -p < setup/trips_db.sql
 ```
 
 3. Configure MySQL DB in `application.properties`

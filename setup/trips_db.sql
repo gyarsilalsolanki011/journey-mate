@@ -1,4 +1,4 @@
--- tripdb.sql
+-- trips_db.sql
 -- Schema + Sample Data for Trip entity
 
 -- 1. Drop database if exists and create a new one

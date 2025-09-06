@@ -2,6 +2,7 @@ package com.gyarsilalsolanki011.journeymate.mapper;
 
 import com.gyarsilalsolanki011.journeymate.dto.TripDto;
 import com.gyarsilalsolanki011.journeymate.entity.Trip;
+import com.gyarsilalsolanki011.journeymate.util.TripStatusParser;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +17,7 @@ public class TripMapper {
         dto.setStartDate(trip.getStartDate().format(FORMATTER));
         dto.setEndDate(trip.getEndDate().format(FORMATTER));
         dto.setPrice(trip.getPrice());
-        dto.setTripStatus(trip.getTripStatus());
+        dto.setTripStatus(trip.getTripStatus().toString());
         return dto;
     }
 
@@ -26,7 +27,7 @@ public class TripMapper {
         trip.setStartDate(LocalDate.parse(dto.getStartDate(), FORMATTER));
         trip.setEndDate(LocalDate.parse(dto.getEndDate(), FORMATTER));
         trip.setPrice(dto.getPrice());
-        trip.setTripStatus(dto.getTripStatus());
+        trip.setTripStatus(TripStatusParser.fromString(dto.getTripStatus()));
         return trip;
     }
 }

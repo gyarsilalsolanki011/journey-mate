@@ -2,6 +2,7 @@ package com.gyarsilalsolanki011.journeymate.entity;
 
 import com.gyarsilalsolanki011.journeymate.dto.TripDto;
 import com.gyarsilalsolanki011.journeymate.enums.TripStatus;
+import com.gyarsilalsolanki011.journeymate.util.TripStatusParser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -49,6 +50,6 @@ public class Trip {
         this.startDate = LocalDate.parse(tripDto.getStartDate(), FORMATTER);
         this.endDate = LocalDate.parse(tripDto.getEndDate(), FORMATTER);
         this.price = tripDto.getPrice();
-        this.tripStatus = tripDto.getTripStatus();
+        this.tripStatus = TripStatusParser.fromString(tripDto.getTripStatus());
     }
 }
