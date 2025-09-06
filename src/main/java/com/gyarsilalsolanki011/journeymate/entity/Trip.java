@@ -37,8 +37,8 @@ public class Trip {
 
     @Enumerated(EnumType.STRING)
     private TripStatus tripStatus;
-
-    public Trip(TripDTO tripDto) {
+  
+    public Trip(TripDto tripDto) {
         this.destination = tripDto.getDestination();
         this.startDate = tripDto.getStartDate();
         this.endDate = tripDto.getEndDate();
