@@ -4,12 +4,14 @@ import com.gyarsilalsolanki011.journeymate.dto.TripDTO;
 import com.gyarsilalsolanki011.journeymate.enums.TripStatus;
 import com.gyarsilalsolanki011.journeymate.util.TripStatusParser;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import lombok.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-
-import static com.gyarsilalsolanki011.journeymate.mapper.TripMapper.FORMATTER;
 
 @Data
 @Entity
@@ -38,7 +40,7 @@ public class Trip {
     @Enumerated(EnumType.STRING)
     private TripStatus tripStatus;
   
-    public Trip(TripDto tripDto) {
+    public Trip(TripDTO tripDto) {
         this.destination = tripDto.getDestination();
         this.startDate = tripDto.getStartDate();
         this.endDate = tripDto.getEndDate();
