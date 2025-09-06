@@ -64,8 +64,8 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.badRequest().body(Map.of(
                 "path", request.getDescription(false),
-                "error", "validation error",
-                "details", errors
+                "details", errors,
+                "error", "validation error"
         ));
     }
 
@@ -82,8 +82,8 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.badRequest().body(Map.of(
                 "path", request.getDescription(false),
-                "error", "Validation failed",
-                "details", errors
+                "details", errors,
+                "error", "Validation failed"
         ));
     }
 

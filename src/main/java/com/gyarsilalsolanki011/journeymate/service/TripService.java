@@ -102,6 +102,9 @@ public class TripService {
     public List<TripDTO> getTripsBetweenDates(String startDate, String endDate) {
         LocalDate start = TripDateParser.parseDate(startDate, "startDate");
         LocalDate end = TripDateParser.parseDate(endDate, "endDate");
+
+        if (start.isAfter(end)) throw new TripServiceException("Start date must not be after end date");
+
         List<Trip> trips = tripRepository.findByStartDateGreaterThanEqualAndEndDateLessThanEqual(start, end);
         if (trips.isEmpty()) {
             throw new TripNotFoundException("No trips found between " + startDate + " and " + endDate);
