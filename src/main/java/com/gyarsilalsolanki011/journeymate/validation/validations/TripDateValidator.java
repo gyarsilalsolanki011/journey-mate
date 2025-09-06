@@ -19,10 +19,10 @@ public class TripDateValidator implements ConstraintValidator<ValidTripDates, Tr
         LocalDate startDate = TripDateParser.parseDate(tripDto.getStartDate().toString(), "startDate");
         LocalDate endDate = TripDateParser.parseDate(tripDto.getEndDate().toString(), "endDate");
 
-        if (startDate.isAfter(endDate)) {
+        if (endDate.isBefore(startDate)) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate("Start date must not be after end date")
-                    .addPropertyNode("startDate")   // 👈 attach to the field
+            context.buildConstraintViolationWithTemplate("End date can not before start date")
+                    .addPropertyNode("endDate")   // 👈 attach to the field
                     .addConstraintViolation();
             return false;
         }

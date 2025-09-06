@@ -28,6 +28,7 @@ public class TripDTO {
     @Positive
     private Double price;
 
+    @NotBlank
     @ValidTripStatus
     private String tripStatus;
 }
