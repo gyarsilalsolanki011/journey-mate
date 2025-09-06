@@ -1,7 +1,6 @@
 # 🌍 JourneyMate – Trip Management Application
 **JourneyMate** is a *Spring Boot + Hibernate (JPA)* based Trip Management System built as part of the **DS-SEP-2025 Assignment**.
 It provides ***REST APIs*** to *create, search, filter, update, delete,* and *summarize* trips with proper validation and exception handling.
-
 </br>
 
 ## ✨ Features
@@ -135,7 +134,11 @@ cd DS-SEP-2025-178
 2. Set up MySQL Database
 ```sql
 CREATE DATABASE trips_db;
-SOURCE tripdb.sql;   -- path to the SQL script
+SOURCE /setup/tripdb.sql;   -- path to the SQL script
+```
+setup using command line
+```bash
+mysql -u root -p < setup/tripdb.sql
 ```
 
 3. Configure MySQL DB in `application.properties`

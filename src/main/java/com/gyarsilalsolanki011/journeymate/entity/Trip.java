@@ -12,7 +12,7 @@ import static com.gyarsilalsolanki011.journeymate.mapper.TripMapper.FORMATTER;
 
 @Data
 @Entity
-@Table(name = "trips_db")
+@Table(name = "trips")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Trip {
