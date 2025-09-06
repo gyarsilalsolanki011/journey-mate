@@ -41,7 +41,7 @@ public class Trip {
     // ✅ Custom validation
     @AssertTrue(message = "End date must be after start date")
     public boolean isEndDateAfterStartDate() {
-        if (startDate == null || endDate == null) return true; // handled by @NotNull already
+        if (startDate == null || endDate == null) return true;
         return endDate.isAfter(startDate);
     }
 
