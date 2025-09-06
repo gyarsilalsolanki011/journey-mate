@@ -1,7 +1,7 @@
 package com.gyarsilalsolanki011.journeymate.dto;
 
-import com.gyarsilalsolanki011.journeymate.validator.ValidTripDates;
-import com.gyarsilalsolanki011.journeymate.validator.ValidTripStatus;
+import com.gyarsilalsolanki011.journeymate.validation.validator.ValidTripDates;
+import com.gyarsilalsolanki011.journeymate.validation.validator.ValidTripStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

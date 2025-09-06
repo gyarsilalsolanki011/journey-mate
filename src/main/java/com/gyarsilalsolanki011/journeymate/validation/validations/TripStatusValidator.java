@@ -1,7 +1,7 @@
-package com.gyarsilalsolanki011.journeymate.validator;
+package com.gyarsilalsolanki011.journeymate.validation.validations;
 
 import com.gyarsilalsolanki011.journeymate.enums.TripStatus;
-import com.gyarsilalsolanki011.journeymate.util.TripStatusParser;
+import com.gyarsilalsolanki011.journeymate.validation.validator.ValidTripStatus;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

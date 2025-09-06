@@ -1,5 +1,6 @@
-package com.gyarsilalsolanki011.journeymate.validator;
+package com.gyarsilalsolanki011.journeymate.validation.validator;
 
+import com.gyarsilalsolanki011.journeymate.validation.validations.TripStatusValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

@@ -3,7 +3,7 @@ package com.gyarsilalsolanki011.journeymate.controller;
 import com.gyarsilalsolanki011.journeymate.dto.TripDTO;
 import com.gyarsilalsolanki011.journeymate.entity.TripSummary;
 import com.gyarsilalsolanki011.journeymate.service.TripService;
-import com.gyarsilalsolanki011.journeymate.validator.ValidTripStatus;
+import com.gyarsilalsolanki011.journeymate.validation.validator.ValidTripStatus;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
