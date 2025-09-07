@@ -168,7 +168,7 @@ mvn test
 ```
 **Run Postman Collection**
 
-Import [`TripCollection #reference.postman_collection.json`](/setup/TripCollection.postman_collection.json) into Postman and execute requests.
+Import [`TripCollection #reference.postman_collection.json`](/setup/TripCollection.postman_collection.json) into Postman and execute each APIs requests.
 
 </br>
 
