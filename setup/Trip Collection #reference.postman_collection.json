@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "26e65ce8-4451-4dba-ba8c-2c549e4c91eb",
-		"name": "Trip Collection #refence",
+		"name": "Trip Collection #reference",
 		"description": "**TripCollection** is the Postman collection for the **JourneyMate Trip Management Application**.\n\nIt contains all the API requests grouped into CRUD and Analytics operations.\n\nUse this collection to test and validate trip lifecycle management, filtering, and summary analytics with a preconfigured environment (`JourneyMate-Local`).",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "33712155",
