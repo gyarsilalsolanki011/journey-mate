@@ -80,27 +80,27 @@ Content-Type: application/json
 
 Get Trips (Pagination & Sorting)
 ```http
-http://localhost:8080/api/trips?page=0&size=5&sort=startDate,asc
+GET /api/trips?page=0&size=5&sort=startDate,asc
 ```
 
-Search by Destination(`Get`)
+Search by Destination
 ```http
-http://localhost:8080/api/trips/search?destination=Paris
+GET /api/trips/search?destination=Paris
 ```
 
-Filter by Status(`Get`)
+Filter by Status
 ```http
-http://localhost:8080/api/trips/filter?status=ONGOING
+GET /api/trips/filter?status=ONGOING
 ```
 
-Trips Between Dates(`Get`)
+Trips Between Dates
 ```http
-http://localhost:8080/api/trips/daterange?start=2025-09-01&end=2025-09-30
+GET /api/trips/daterange?start=2025-09-01&end=2025-09-30
 ```
 
-`Get`: Trip Summary
+Trip Summary
 ```http
-http://localhost:8080/api/trips/summary
+GET /api/trips/summary
 ```
 
 </br>
