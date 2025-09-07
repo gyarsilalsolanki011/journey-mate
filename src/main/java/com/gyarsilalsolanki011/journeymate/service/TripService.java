@@ -82,6 +82,9 @@ public class TripService {
     }
 
     public List<TripDTO> searchTripsByDestination(String destination) {
+        if (destination == null || destination.trim().isEmpty()) {
+            throw new TripServiceException("Destination parameter must not be null or empty");
+        }
         List<Trip> trips = tripRepository.findByDestinationContainingIgnoreCase(destination);
         if (trips.isEmpty()) {
             throw new TripNotFoundException("No trips found for destination: " + destination);

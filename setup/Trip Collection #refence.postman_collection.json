@@ -1,0 +1,1557 @@
+{
+	"info": {
+		"_postman_id": "26e65ce8-4451-4dba-ba8c-2c549e4c91eb",
+		"name": "Trip Collection #refence",
+		"description": "**TripCollection** is the Postman collection for the **JourneyMate Trip Management Application**.\n\nIt contains all the API requests grouped into CRUD and Analytics operations.\n\nUse this collection to test and validate trip lifecycle management, filtering, and summary analytics with a preconfigured environment (`JourneyMate-Local`).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33712155",
+		"_collection_link": "https://dev-cafe.postman.co/workspace/68b67f70-cf8c-42fd-85d0-46ffcd9715b0/collection/33712155-26e65ce8-4451-4dba-ba8c-2c549e4c91eb?action=share&source=collection_link&creator=33712155"
+	},
+	"item": [
+		{
+			"name": "Crud APIs",
+			"item": [
+				{
+					"name": "Create Trip",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"destination\": \"Hydrabad\",\r\n    \"startDate\": \"2025-05-10\",\r\n    \"endDate\": \"2025-05-20\",\r\n    \"price\": 20000,\r\n    \"tripStatus\": \"HOLIday\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/trips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trips"
+							]
+						},
+						"description": "Creates a new trip with destination, dates, price, and status."
+					},
+					"response": [
+						{
+							"name": "Blank String Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"destination\": \"\",\r\n    \"startDate\": \"2025-02-10\",\r\n    \"endDate\": \"2025-02-20\",\r\n    \"price\": 50000,\r\n    \"tripStatus\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/trips",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:03:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"details\": {\n        \"destination\": \"must not be blank\",\n        \"tripStatus\": \"must not be blank\"\n    },\n    \"path\": \"uri=/api/trips\",\n    \"error\": \"validation error\"\n}"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"destination\": \"Hydrabad\",\r\n    \"startDate\": \"2025-05-20\",\r\n    \"endDate\": \"2025-05-10\",\r\n    \"price\": 0,\r\n    \"tripStatus\": \"HOLIday\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/trips",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:15:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"details\": {\n        \"endDate\": \"End date can not before start date\",\n        \"price\": \"must be greater than 0\",\n        \"tripStatus\": \"Invalid trip status: HOLIday\"\n    },\n    \"path\": \"uri=/api/trips\",\n    \"error\": \"validation error\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"destination\": \"Hydrabad\",\r\n    \"startDate\": \"2025-02-10\",\r\n    \"endDate\": \"2025-02-20\",\r\n    \"price\": 50000,\r\n    \"tripStatus\": \"ONGOING\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/trips",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "25"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:12:07 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Trip created successfully"
+						}
+					]
+				},
+				{
+					"name": "Get Trips",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/trips?page=1&size=10&sort=id, asc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trips"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "sort",
+									"value": "id, asc"
+								}
+							]
+						},
+						"description": "Retrieves all trips with support for pagination and sorting."
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips?page=1&size=10&sort=id, asc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sort",
+											"value": "id, asc"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:18:10 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": [\n        {\n            \"destination\": \"Banglooro\",\n            \"startDate\": \"2025-02-10\",\n            \"endDate\": \"2025-02-20\",\n            \"price\": 50000,\n            \"tripStatus\": \"PLANNED\"\n        },\n        {\n            \"destination\": \"Hydrabad\",\n            \"startDate\": \"2025-02-10\",\n            \"endDate\": \"2025-02-20\",\n            \"price\": 50000,\n            \"tripStatus\": \"ONGOING\"\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 1,\n        \"pageSize\": 10,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 10,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"totalPages\": 2,\n    \"totalElements\": 12,\n    \"last\": true,\n    \"size\": 10,\n    \"number\": 1,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"numberOfElements\": 2,\n    \"first\": false,\n    \"empty\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Trip",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/trips/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trips",
+								"11"
+							]
+						},
+						"description": "Fetches a single trip by its unique ID."
+					},
+					"response": [
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips/15",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"15"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:19:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timeStamp\": \"2025-09-08T01:49:39.039942\",\n    \"status\": 404,\n    \"error\": \"Trip not found with id: 15\",\n    \"path\": \"uri=/api/trips/15\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips/12",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"12"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:20:15 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"destination\": \"Hydrabad\",\n    \"startDate\": \"2025-02-10\",\n    \"endDate\": \"2025-02-20\",\n    \"price\": 50000,\n    \"tripStatus\": \"ONGOING\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Trip",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"destination\": \"Thailand\",\r\n    \"startDate\": \"2025-09-01\",\r\n    \"endDate\": \"2025-10-01\",\r\n    \"price\": 10000,\r\n    \"tripStatus\": \"ONgoingg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/11",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"11"
+							]
+						},
+						"description": "Updates details of an existing trip by ID."
+					},
+					"response": [
+						{
+							"name": "Validation error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"destination\": \"\",\r\n    \"startDate\": \"2025-11-01\",\r\n    \"endDate\": \"2025-10-01\",\r\n    \"price\": 0,\r\n    \"tripStatus\": \"Not Planned\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/trips/9",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"9"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:21:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"details\": {\n        \"endDate\": \"End date can not before start date\",\n        \"price\": \"must be greater than 0\",\n        \"destination\": \"must not be blank\",\n        \"tripStatus\": \"Invalid trip status: Not Planned\"\n    },\n    \"path\": \"uri=/api/trips/9\",\n    \"error\": \"validation error\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"destination\": \"Thailand\",\r\n    \"startDate\": \"2025-09-01\",\r\n    \"endDate\": \"2025-10-01\",\r\n    \"price\": 10000,\r\n    \"tripStatus\": \"ONgoing\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/trips/11",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"11"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:22:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"destination\": \"Thailand\",\n    \"startDate\": \"2025-09-01\",\n    \"endDate\": \"2025-10-01\",\n    \"price\": 10000,\n    \"tripStatus\": \"ONGOING\"\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"destination\": \"Thailand\",\r\n    \"startDate\": \"2025-09-01\",\r\n    \"endDate\": \"2025-10-01\",\r\n    \"price\": 10000,\r\n    \"tripStatus\": \"ONgoing\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/15",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"15"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 21:03:38 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timeStamp\": \"2025-09-08T02:33:38.3737077\",\n    \"status\": 404,\n    \"error\": \"Trip not found with id: 15\",\n    \"path\": \"uri=/api/trips/15\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Trip",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/trips/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trips",
+								"12"
+							]
+						},
+						"description": "Removes a trip permanently by ID."
+					},
+					"response": [
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips/15",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"15"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:23:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timeStamp\": \"2025-09-08T01:53:37.6233275\",\n    \"status\": 404,\n    \"error\": \"Trip not found with id: 15\",\n    \"path\": \"uri=/api/trips/15\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips/12",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"12"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "25"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:24:23 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Trip deleted successfully"
+						}
+					]
+				}
+			],
+			"description": "This folder contains all **core CRUD APIs** for managing trips.  \n  \nYou can create new trips, fetch all trips with pagination & sorting, retrieve a trip by ID, update existing trips, and delete trips.  \n  \nThese requests represent the basic operations required to maintain the trip database."
+		},
+		{
+			"name": "Analytics APIs",
+			"item": [
+				{
+					"name": "search-by-dest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/trips/search?destination=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trips",
+								"search"
+							],
+							"query": [
+								{
+									"key": "destination",
+									"value": ""
+								}
+							]
+						},
+						"description": "Finds trips matching a given destination (partial or full match)."
+					},
+					"response": [
+						{
+							"name": "Blank Parameter",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips/search?destination=",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"search"
+									],
+									"query": [
+										{
+											"key": "destination",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:44:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"path\": \"uri=/api/trips/search\",\n    \"details\": {\n        \"searchTrips.destination\": \"must not be blank\"\n    },\n    \"error\": \"Validation failed\"\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips/search?destination=Mumbai",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"search"
+									],
+									"query": [
+										{
+											"key": "destination",
+											"value": "Mumbai"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:26:28 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timeStamp\": \"2025-09-08T01:56:28.6450699\",\n    \"status\": 404,\n    \"error\": \"No trips found for destination: Mumbai\",\n    \"path\": \"uri=/api/trips/search\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips/search?destination=paris",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"search"
+									],
+									"query": [
+										{
+											"key": "destination",
+											"value": "paris"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:35:16 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"destination\": \"Paris\",\n        \"startDate\": \"2025-09-10\",\n        \"endDate\": \"2025-09-02\",\n        \"price\": 1200.5,\n        \"tripStatus\": \"PLANNED\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Find By TripSatatus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/trips/filter?tripStatus=ONgoing",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trips",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "tripStatus",
+									"value": "ONgoing"
+								}
+							]
+						},
+						"description": "Retrieves trips filtered by status (`PLANNED`, `ONGOING`, `COMPLETED`)."
+					},
+					"response": [
+						{
+							"name": "Blank Parameter",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips/filter?tripStatus=",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"filter"
+									],
+									"query": [
+										{
+											"key": "tripStatus",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:37:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Validation failed\",\n    \"path\": \"uri=/api/trips/filter\",\n    \"details\": {\n        \"getTripsByStatus.tripStatus\": \"must not be blank\"\n    }\n}"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips/filter?tripStatus=Holiday",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"filter"
+									],
+									"query": [
+										{
+											"key": "tripStatus",
+											"value": "Holiday"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:39:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Validation failed\",\n    \"path\": \"uri=/api/trips/filter\",\n    \"details\": {\n        \"getTripsByStatus.tripStatus\": \"Invalid trip status: Holiday\"\n    }\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips/filter?tripStatus=ONgoing",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"filter"
+									],
+									"query": [
+										{
+											"key": "tripStatus",
+											"value": "ONgoing"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:40:42 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"destination\": \"New York\",\n        \"startDate\": \"2025-10-01\",\n        \"endDate\": \"2025-10-08\",\n        \"price\": 1500,\n        \"tripStatus\": \"ONGOING\"\n    },\n    {\n        \"destination\": \"Cape Town\",\n        \"startDate\": \"2025-09-25\",\n        \"endDate\": \"2025-10-05\",\n        \"price\": 1600,\n        \"tripStatus\": \"ONGOING\"\n    },\n    {\n        \"destination\": \"Thailand\",\n        \"startDate\": \"2025-09-01\",\n        \"endDate\": \"2025-10-01\",\n        \"price\": 1000000,\n        \"tripStatus\": \"ONGOING\"\n    },\n    {\n        \"destination\": \"Thailand\",\n        \"startDate\": \"2025-09-01\",\n        \"endDate\": \"2025-10-01\",\n        \"price\": 10000,\n        \"tripStatus\": \"ONGOING\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "filter-by-date-range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/trips/daterange?startDate=2025-05-20&endDate=2025-11-10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trips",
+								"daterange"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-05-20"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-11-10"
+								}
+							]
+						},
+						"description": "Gets trips starting and ending between the given dates."
+					},
+					"response": [
+						{
+							"name": "endDate After startDate",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips/daterange?startDate=2026-08-10&endDate=2025-11-10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"daterange"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2026-08-10"
+										},
+										{
+											"key": "endDate",
+											"value": "2025-11-10"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:46:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timeStamp\": \"2025-09-08T02:16:38.8175734\",\n    \"status\": 400,\n    \"error\": \"Start date must not be after end date\",\n    \"path\": \"uri=/api/trips/daterange\"\n}"
+						},
+						{
+							"name": "Blank Parameters",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips/daterange?startDate=&endDate=",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"daterange"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": ""
+										},
+										{
+											"key": "endDate",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:50:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Validation failed\",\n    \"path\": \"uri=/api/trips/daterange\",\n    \"details\": {\n        \"getTripsBetweenDates.startDate\": \"must not be blank\",\n        \"getTripsBetweenDates.endDate\": \"must not be blank\"\n    }\n}"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips/daterange?startDate=20-05-2025&endDate=2025-11-10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"daterange"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "20-05-2025"
+										},
+										{
+											"key": "endDate",
+											"value": "2025-11-10"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:51:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"timeStamp\": \"2025-09-08T02:21:44.9331137\",\n    \"status\": 400,\n    \"error\": \"Invalid date format for startDate. Expected yyyy-MM-dd\",\n    \"path\": \"uri=/api/trips/daterange\"\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips/daterange?startDate=2026-05-20&endDate=2027-11-10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"daterange"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2026-05-20"
+										},
+										{
+											"key": "endDate",
+											"value": "2027-11-10"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:55:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timeStamp\": \"2025-09-08T02:25:11.5823676\",\n    \"status\": 404,\n    \"error\": \"No trips found between 2026-05-20 and 2027-11-10\",\n    \"path\": \"uri=/api/trips/daterange\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips/daterange?startDate=2025-05-20&endDate=2025-11-10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"daterange"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2025-05-20"
+										},
+										{
+											"key": "endDate",
+											"value": "2025-11-10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:53:16 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"destination\": \"Paris\",\n        \"startDate\": \"2025-09-10\",\n        \"endDate\": \"2025-09-02\",\n        \"price\": 1200.5,\n        \"tripStatus\": \"PLANNED\"\n    },\n    {\n        \"destination\": \"New York\",\n        \"startDate\": \"2025-10-01\",\n        \"endDate\": \"2025-10-08\",\n        \"price\": 1500,\n        \"tripStatus\": \"ONGOING\"\n    },\n    {\n        \"destination\": \"Tokyo\",\n        \"startDate\": \"2025-07-15\",\n        \"endDate\": \"2025-07-25\",\n        \"price\": 2000,\n        \"tripStatus\": \"COMPLETED\"\n    },\n    {\n        \"destination\": \"Rome\",\n        \"startDate\": \"2025-08-05\",\n        \"endDate\": \"2025-08-15\",\n        \"price\": 1100,\n        \"tripStatus\": \"COMPLETED\"\n    },\n    {\n        \"destination\": \"Cape Town\",\n        \"startDate\": \"2025-09-25\",\n        \"endDate\": \"2025-10-05\",\n        \"price\": 1600,\n        \"tripStatus\": \"ONGOING\"\n    },\n    {\n        \"destination\": \"Thailand\",\n        \"startDate\": \"2025-09-01\",\n        \"endDate\": \"2025-10-01\",\n        \"price\": 1000000,\n        \"tripStatus\": \"ONGOING\"\n    },\n    {\n        \"destination\": \"Thailand\",\n        \"startDate\": \"2025-09-01\",\n        \"endDate\": \"2025-10-01\",\n        \"price\": 10000,\n        \"tripStatus\": \"ONGOING\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "get-summary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/trips/summary",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trips",
+								"summary"
+							]
+						},
+						"description": "Returns total trips, min price, max price, and average price."
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/trips/summary",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"trips",
+										"summary"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Sep 2025 20:56:09 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"totalTrips\": 11,\n    \"minPrice\": 950,\n    \"maxPrice\": 1000000,\n    \"avgPrice\": 92972.84090909091\n}"
+						}
+					]
+				}
+			],
+			"description": "This folder contains **advanced analytics and search APIs** for trips.  \n  \nYou can search trips by destination, filter by status, fetch trips within a date range, and get an aggregated trip summary (total trips, min/max price, average price).  \n  \nThese requests provide insights and filtering capabilities beyond basic CRUD."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base-url",
+			"value": ""
+		}
+	]
+}

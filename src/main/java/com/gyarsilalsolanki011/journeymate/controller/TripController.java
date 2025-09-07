@@ -5,6 +5,8 @@ import com.gyarsilalsolanki011.journeymate.entity.TripSummary;
 import com.gyarsilalsolanki011.journeymate.service.TripService;
 import com.gyarsilalsolanki011.journeymate.validation.validator.ValidTripStatus;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -36,32 +38,32 @@ public class TripController {
     }
 
     @GetMapping("/{tripId}")
-    public ResponseEntity<TripDTO> getTrip(@PathVariable Integer tripId) {
+    public ResponseEntity<TripDTO> getTrip(@NotNull @PathVariable Integer tripId) {
         return ResponseEntity.ok().body(tripService.getTripById(tripId));
     }
 
     @PutMapping("/{tripId}")
-    public ResponseEntity<TripDTO> updateTrip(@PathVariable Integer tripId,@Valid @RequestBody TripDTO tripDto) {
+    public ResponseEntity<TripDTO> updateTrip(@NotNull @PathVariable Integer tripId, @Valid @RequestBody TripDTO tripDto) {
         return ResponseEntity.ok().body(tripService.updateTrip(tripId, tripDto));
     }
 
     @DeleteMapping("/{tripId}")
-    public ResponseEntity<String> deleteTrip(@PathVariable Integer tripId) {
+    public ResponseEntity<String> deleteTrip(@NotNull @PathVariable Integer tripId) {
         return ResponseEntity.ok().body(tripService.deleteTrip(tripId));
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<TripDTO>> searchTrips(@RequestParam String destination) {
+    public ResponseEntity<List<TripDTO>> searchTrips(@NotBlank @RequestParam String destination) {
         return ResponseEntity.ok().body(tripService.searchTripsByDestination(destination));
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<List<TripDTO>> getTripsByStatus(@ValidTripStatus @RequestParam String tripStatus) {
+    public ResponseEntity<List<TripDTO>> getTripsByStatus(@NotBlank @ValidTripStatus @RequestParam String tripStatus) {
         return ResponseEntity.ok().body(tripService.getTripsByStatus(tripStatus));
     }
 
     @GetMapping("/daterange")
-    public ResponseEntity<List<TripDTO>> getTripsBetweenDates(@RequestParam String startDate, @RequestParam String endDate) {
+    public ResponseEntity<List<TripDTO>> getTripsBetweenDates(@NotBlank @RequestParam String startDate, @NotBlank @RequestParam String endDate) {
         return ResponseEntity.ok().body(tripService.getTripsBetweenDates(startDate, endDate));
     }
 
