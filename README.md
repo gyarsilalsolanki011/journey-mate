@@ -31,6 +31,7 @@ journeymate/
 ├── repository/           # Spring Data JPA Repositories
 ├── service/              # Service layer with business logic
 ├── util/                 # Utility classes
+├── Validations/          # Custom validation + validator
 └── JourneyMateApplication.java  # Main Spring Boot app
 ```
 
@@ -167,7 +168,7 @@ mvn test
 ```
 **Run Postman Collection**
 
-Import `TripCollection.postman_collection.json` into Postman and execute requests.
+Import `TripCollection #reference.postman_collection.json` into Postman and execute requests.
 
 </br>
 
