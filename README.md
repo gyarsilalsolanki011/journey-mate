@@ -168,7 +168,7 @@ mvn test
 ```
 **Run Postman Collection**
 
-Import `TripCollection #reference.postman_collection.json` into Postman and execute requests.
+Import [`TripCollection #reference.postman_collection.json`](/setup/TripCollection.postman_collection.json) into Postman and execute requests.
 
 </br>
 
@@ -176,8 +176,8 @@ Import `TripCollection #reference.postman_collection.json` into Postman and exec
 - ✅ Complete Spring Boot Project on GitHub
 - ✅ Public repository: DS-SEP-2025-178
 - ✅ README with step to run + API docs
-- ✅ Postman Collection (path: `setup/TripCollection #reference.postman_collection.json` )
-- ✅ Database Script (path: `setup/trips_db.sql`)
+- ✅ Postman Collection (path: [`TripCollection #reference.postman_collection.json`](/setup/TripCollection.postman_collection.json)  )
+- ✅ Database Script (path: [`setup/trips_db.sql`](/setup/trips_db.sql))
 
 </br>
 
