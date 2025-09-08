@@ -1,4 +1,4 @@
-package com.gyarsilalsolanki011.journeymate.validation.validations;
+package com.gyarsilalsolanki011.journeymate.validation;
 
 import com.gyarsilalsolanki011.journeymate.dto.TripDTO;
 import com.gyarsilalsolanki011.journeymate.util.TripDateParser;
