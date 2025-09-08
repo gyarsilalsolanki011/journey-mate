@@ -133,6 +133,7 @@ cd DS-SEP-2025-178
 ```
 
 2. Set up MySQL Database
+setup using MySQL CLI
 ```sql
 CREATE DATABASE trips_db;
 SOURCE /setup/tripdb.sql;   -- path to the SQL script
