@@ -31,7 +31,7 @@ journeymate/
 ├── repository/           # Spring Data JPA Repositories
 ├── service/              # Service layer with business logic
 ├── util/                 # Utility classes
-├── Validations/          # Custom validation + validator
+├── Validation/           # Custom validation + validator
 └── JourneyMateApplication.java  # Main Spring Boot app
 ```
 
