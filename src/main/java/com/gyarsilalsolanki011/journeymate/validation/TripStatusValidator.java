@@ -1,4 +1,4 @@
-package com.gyarsilalsolanki011.journeymate.validation.validations;
+package com.gyarsilalsolanki011.journeymate.validation;
 
 import com.gyarsilalsolanki011.journeymate.enums.TripStatus;
 import com.gyarsilalsolanki011.journeymate.validation.validator.ValidTripStatus;
