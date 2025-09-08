@@ -108,9 +108,11 @@ GET /api/trips/summary
 ## 🛡️ Exception Handling
 
 Global exceptions handled via `@ControllerAdvice:`
-- `TripNotFoundException` → 404 NOT FOUND
-- `TripServiceException` → 400 BAD REQUEST
-- `Generic Exception` → 500 INTERNAL SERVER ERROR
+- `TripNotFoundException` → 404 NOT FOUND (for missing trips)
+- `TripServiceException` → 400 BAD REQUEST (for business logic errors)
+- `MethodArgumentNotValidException` → 400 BAD REQUEST (for validation errors)
+- `ConstraintViolationException` → 400 BAD REQUEST (for custom validation errors)
+- `Generic Exception` → 500 INTERNAL SERVER ERROR (for unhandled exceptions)
 
 Response Example:
 ```json
