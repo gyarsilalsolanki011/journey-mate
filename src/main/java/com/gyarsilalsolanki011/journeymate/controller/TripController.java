@@ -43,7 +43,10 @@ public class TripController {
     }
 
     @PutMapping("/{tripId}")
-    public ResponseEntity<TripDTO> updateTrip(@NotNull @PathVariable Integer tripId, @Valid @RequestBody TripDTO tripDto) {
+    public ResponseEntity<TripDTO> updateTrip(
+            @NotNull @PathVariable Integer tripId,
+            @Valid @RequestBody TripDTO tripDto
+    ) {
         return ResponseEntity.ok().body(tripService.updateTrip(tripId, tripDto));
     }
 
@@ -63,7 +66,10 @@ public class TripController {
     }
 
     @GetMapping("/daterange")
-    public ResponseEntity<List<TripDTO>> getTripsBetweenDates(@NotBlank @RequestParam String startDate, @NotBlank @RequestParam String endDate) {
+    public ResponseEntity<List<TripDTO>> getTripsBetweenDates(
+            @NotBlank @RequestParam String startDate,
+            @NotBlank @RequestParam String endDate
+    ) {
         return ResponseEntity.ok().body(tripService.getTripsBetweenDates(startDate, endDate));
     }
 

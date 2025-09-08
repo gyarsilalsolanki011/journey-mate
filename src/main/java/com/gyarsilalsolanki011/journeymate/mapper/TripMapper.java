@@ -4,13 +4,7 @@ import com.gyarsilalsolanki011.journeymate.dto.TripDTO;
 import com.gyarsilalsolanki011.journeymate.entity.Trip;
 import com.gyarsilalsolanki011.journeymate.util.TripStatusParser;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 public class TripMapper {
-
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
     public static TripDTO toDto(Trip trip) {
         TripDTO dto = new TripDTO();
         dto.setDestination(trip.getDestination());
