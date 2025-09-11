@@ -1,8 +1,11 @@
+<a name="journeymate"></a>
 # 🌍 JourneyMate – Trip Management Application
 **JourneyMate** is a *Spring Boot + Hibernate (JPA)* based Trip Management System built as part of the **DS-SEP-2025 Assignment**.
 It provides ***REST APIs*** to *create, search, filter, update, delete,* and *summarize* trips with proper validation and exception handling.
-</br>
 
+<br>
+
+<a name="features"></a>
 ## ✨ Features
 - ✅ CRUD Operations for trips (Create, Read, Update, Delete)
 - ✅ Pagination & Sorting for listing trips
@@ -17,8 +20,9 @@ It provides ***REST APIs*** to *create, search, filter, update, delete,* and *su
 - ✅ Unit Tests (JUnit + Mockito)
 - ✅ Postman Collection for API Testing
 
-</br>
+<br>
 
+<a name="project-structure"></a>
 ## 📂 Project Structure
 ```graphql
 journeymate/
@@ -35,8 +39,9 @@ journeymate/
 └── JourneyMateApplication.java  # Main Spring Boot app
 ```
 
-</br>
+<br>
 
+<a name="tech-stack"></a>
 ## ⚙️ Tech Stack
 - **Backend:** Java 17, Spring Boot
 - **Database:** MySQL (with JPA/Hibernate)
@@ -44,13 +49,14 @@ journeymate/
 - **Testing:** JUnit & Mockito
 - **API Testing:** Postman / Swagger UI
 
-</br>
+<br>
 
+<a name="api-endpoints"></a>
 ## 🚀 API Endpoints
 **🔹 Trip Management**
 
 | Method   | Endpoint                                               | Description                                   |
-| -------- | ------------------------------------------------------ | --------------------------------------------- |
+|----------|--------------------------------------------------------|-----------------------------------------------|
 | `POST`   | `/api/trips`                                           | Create a new trip                             |
 | `GET`    | `/api/trips`                                           | Get all trips (with pagination & sorting)     |
 | `GET`    | `/api/trips/{id}`                                      | Get trip by ID                                |
@@ -103,8 +109,9 @@ Trip Summary
 GET /api/trips/summary
 ```
 
-</br>
+<br>
 
+<a name="exception-handling"></a>
 ## 🛡️ Exception Handling
 
 Global exceptions handled via `@ControllerAdvice:`
@@ -136,8 +143,9 @@ Response Examples:
 }
 ```
 
-</br>
+<br>
 
+<a name="how-to-run"></a>
 ## ▶️ How to Run
 
 #### 1. Clone Repository
@@ -152,7 +160,7 @@ cd DS-SEP-2025-178
 CREATE DATABASE trips_db;
 SOURCE /setup/tripdb.sql;   -- path to the SQL script
 ```
-> Try to setup with full SQL script path
+> Try to set up with full SQL script path
 > 
 **setup using command line**
 ```bash
@@ -181,8 +189,9 @@ java -jar target/spring-boot-journey-mate.jar
 - Base URL → `http://localhost:8080/api/trips`
 - Swagger → `http://localhost:8080/swagger-ui.html`
 
-</br>
+<br>
 
+<a name="testing"></a>
 ## 🧪 Testing
 
 **Run Unit Tests**
@@ -191,10 +200,11 @@ mvn test
 ```
 **Run Postman Collection**
 
-Import [`TripCollection.postman_collection.json`](/setup/TripCollection.postman_collection.json) into Postman and execute each APIs requests.
+Import [`TripCollection.postman_collection.json`](/setup/TripCollection.postman_collection.json) into Postman and execute each API's requests.
 
-</br>
+<br>
 
+<a name="deliverables"></a>
 ## 📦 Deliverables (as per assignment)
 - ✅ Complete Spring Boot Project on GitHub
 - ✅ Public repository: DS-SEP-2025-178
@@ -204,8 +214,9 @@ Import [`TripCollection.postman_collection.json`](/setup/TripCollection.postman_
 - ✅ Postman Collection (path: [`/setup/TripCollection.postman_collection.json`](/setup/TripCollection.postman_collection.json) )
 - ✅ Database Script (path: [`/setup/trips_db.sql`](/setup/trips_db.sql))
 
-</br>
+<br>
 
+<a name="developer"></a>
 ## 👨‍💻 Developer
 
 `Gyarsilal Solanki`
