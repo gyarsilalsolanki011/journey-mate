@@ -2,7 +2,7 @@
 -- Schema + Sample Data for Trip entity
 
 -- 1. Drop database if exists and create a new one
-DROP DATABASE IF EXISTS trips_db;
+DROP DATABASE IF EXISTS trips_db; -- Optional
 CREATE DATABASE trips_db;
 USE trips_db;
 
@@ -16,7 +16,8 @@ CREATE TABLE trips(
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     price DECIMAL(10, 2) NOT NULL CHECK (price >= 0),
-    trip_status ENUM('PLANNED', 'ONGOING', 'COMPLETED') DEFAULT 'PLANNED'
+    trip_status ENUM('PLANNED', 'ONGOING', 'COMPLETED') DEFAULT 'PLANNED',
+    CONSTRAINT chk_dates CHECK (end_date > start_date)
 );
 
 -- 4. Insert sample data
