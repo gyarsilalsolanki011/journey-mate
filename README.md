@@ -175,7 +175,7 @@ OR
 mvn package
 java -jar target/spring-boot-journey-mate.jar
 ```
->Or run project manualy(by clicking run button)
+>Or run project manually(by clicking run button)
 
 #### 5. Access APIs:
 - Base URL → `http://localhost:8080/api/trips`
@@ -198,7 +198,9 @@ Import [`TripCollection.postman_collection.json`](/setup/TripCollection.postman_
 ## 📦 Deliverables (as per assignment)
 - ✅ Complete Spring Boot Project on GitHub
 - ✅ Public repository: DS-SEP-2025-178
-- ✅ README with step to run + API docs
+- ✅ README.md having project details:
+  - Steps to run the application
+  - API endpoints with examples
 - ✅ Postman Collection (path: [`/setup/TripCollection.postman_collection.json`](/setup/TripCollection.postman_collection.json) )
 - ✅ Database Script (path: [`/setup/trips_db.sql`](/setup/trips_db.sql))
 
