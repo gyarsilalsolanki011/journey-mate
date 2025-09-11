@@ -11,7 +11,7 @@ It provides ***REST APIs*** to *create, search, filter, update, delete,* and *su
 - ✅ Filter trips between start & end dates
 - ✅ Trip summary (total, min, max, average price)
 - ✅ DTO ↔ Entity mapping via Mapper layer
-- ✅ Coston Validations to validate Dates 
+- ✅ Custom Validations to validate Dates 
 - ✅ Global Exception Handling with @ControllerAdvice
 - ✅ Swagger (OpenAPI) Documentation
 - ✅ Unit Tests (JUnit + Mockito)
@@ -114,7 +114,19 @@ Global exceptions handled via `@ControllerAdvice:`
 - `ConstraintViolationException` → 400 BAD REQUEST (for custom validation errors)
 - `Generic Exception` → 500 INTERNAL SERVER ERROR (for unhandled exceptions)
 
-Response Example:
+Response Examples:
+```json
+{
+    "path": "uri=/api/trips/9",
+    "error": "validation error",
+    "details": {
+        "endDate": "End date can not before start date",
+        "price": "must be greater than 0",
+        "destination": "must not be blank",
+        "tripStatus": "Invalid trip status: Not Planned"
+    }
+}
+```
 ```json
 {
   "timestamp": "2024-10-01T12:00:00.000+00:00",
@@ -128,36 +140,44 @@ Response Example:
 
 ## ▶️ How to Run
 
-1. Clone Repository
+#### 1. Clone Repository
 ```bash
 git clone https://github.com/gyarsilalsolanki011/DS-SEP-2025-178.git
 cd DS-SEP-2025-178
 ```
 
-2. Set up MySQL Database
-setup using MySQL CLI
+#### 2. Set up MySQL Database
+**setup using MySQL CLI**
 ```sql
 CREATE DATABASE trips_db;
 SOURCE /setup/tripdb.sql;   -- path to the SQL script
 ```
-setup using command line
+> Try to setup with full SQL script path
+> 
+**setup using command line**
 ```bash
 mysql -u root -p < setup/trips_db.sql
 ```
 
-3. Configure MySQL DB in `application.properties`
+#### 3. Configure MySQL DB in `application.properties`
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/trips_db
 spring.datasource.username=root
 spring.datasource.password=your_password
 spring.jpa.hibernate.ddl-auto=update
 ```
-4. Run application
+#### 4. Run application
 ```bash
 mvn spring-boot:run
 ```
+OR
+```bash
+mvn package
+java -jar target/spring-boot-journey-mate.jar
+```
+>Or run project manualy(by clicking run button)
 
-5. Access APIs:
+#### 5. Access APIs:
 - Base URL → `http://localhost:8080/api/trips`
 - Swagger → `http://localhost:8080/swagger-ui.html`
 
@@ -179,7 +199,7 @@ Import [`TripCollection.postman_collection.json`](/setup/TripCollection.postman_
 - ✅ Complete Spring Boot Project on GitHub
 - ✅ Public repository: DS-SEP-2025-178
 - ✅ README with step to run + API docs
-- ✅ Postman Collection (path: [`/setup/TripCollection.postman_collection.json`](/setup/TripCollection.postman_collection.json)  )
+- ✅ Postman Collection (path: [`/setup/TripCollection.postman_collection.json`](/setup/TripCollection.postman_collection.json) )
 - ✅ Database Script (path: [`/setup/trips_db.sql`](/setup/trips_db.sql))
 
 </br>
