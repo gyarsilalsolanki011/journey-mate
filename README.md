@@ -209,7 +209,7 @@ Import [`TripCollection.postman_collection.json`](/setup/TripCollection.postman_
 - ✅ Complete Spring Boot Project on GitHub
 - ✅ Public repository: DS-SEP-2025-178
 - ✅ README.md having project details:
-  - [Steps to run](#-how-to-run) the application
+  - [Steps to run](#how-to-run) the application
   - [API endpoints](#-api-endpoints) with examples
 - ✅ Postman Collection (path: [`/setup/TripCollection.postman_collection.json`](/setup/TripCollection.postman_collection.json) )
 - ✅ Database Script (path: [`/setup/trips_db.sql`](/setup/trips_db.sql))
