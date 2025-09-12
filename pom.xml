@@ -15,7 +15,7 @@
 	<artifactId>journeymate</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>JourneyMate</name>
-	<description>Trip Management / Banking Application</description>
+	<description>Trip Management Application</description>
 	<url>https://github.com/gyarsilalsolanki011/DS-SEP-2025-178</url>
 
 	<!-- License & Developer Info -->
@@ -27,7 +27,6 @@
 			<comments>This project is licensed under the MIT License</comments>
 		</license>
 	</licenses>
-
 	<developers>
 		<developer>
 			<id>gyarsilalsolanki011</id>
