@@ -1,5 +1,6 @@
 package com.gyarsilalsolanki011.journeymate.exception;
 
+import com.gyarsilalsolanki011.journeymate.model.dto.ErrorResponse;
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;

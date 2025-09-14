@@ -1,4 +1,4 @@
-package com.gyarsilalsolanki011.journeymate.dto;
+package com.gyarsilalsolanki011.journeymate.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

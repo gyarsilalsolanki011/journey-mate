@@ -1,6 +1,6 @@
 package com.gyarsilalsolanki011.journeymate.util;
 
-import com.gyarsilalsolanki011.journeymate.enums.TripStatus;
+import com.gyarsilalsolanki011.journeymate.model.enums.TripStatus;
 import com.gyarsilalsolanki011.journeymate.exception.TripServiceException;
 
 public class TripStatusParser {

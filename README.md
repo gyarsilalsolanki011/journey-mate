@@ -26,17 +26,19 @@ It provides ***REST APIs*** to *create, search, filter, update, delete,* and *su
 ## 📂 Project Structure
 ```graphql
 journeymate/
-├── controller/           # REST controllers (TripController)
-├── dto/                  # Data Transfer Objects (TripDto, ErrorResponse)
-├── entity/               # JPA Entities (Trip.java)
-├── enum/                 # Enums (TripStatus.java)
-├── exception/            # Custom exceptions + GlobalExceptionHandler
-├── mapper/               # DTO ↔ Entity mappers
-├── repository/           # Spring Data JPA Repositories
-├── service/              # Service layer with business logic
-├── util/                 # Utility classes
-├── Validation/           # Custom validation + validator
-└── JourneyMateApplication.java  # Main Spring Boot app
+├── controller/      # REST Controllers (TripController, etc.)
+├── exception/       # GlobalExceptionHandler, custom exceptions
+├── mapper/          # DTO ↔ Entity mappers (TripMapper, etc.)
+├── model/           # Data models(enums, entities, DTOs)
+│   ├── dto/         # Data Transfer Objects (TripDTO, etc.)
+│   ├── entity/      # JPA Entities (Trip, User, etc.)
+│   └── enums/       # Enum definitions (TripStatus, etc.)
+├── repository/      # Spring Data JPA repositories
+├── seeder/          # DataLoader / Database seeding classes
+├── service/         # Business logic layer (TripService, etc.)
+├── util/            # Utility classes (DateUtils, etc.)
+├── validation/      # Custom validators / annotations
+└── JourneyMateApplication.java  # Spring Boot main class
 ```
 
 <br>
@@ -155,16 +157,14 @@ cd DS-SEP-2025-178
 ```
 
 #### 2. Set up MySQL Database
-**setup using MySQL CLI**
+**Create MySQL database named `trips_db`**
 ```sql
 CREATE DATABASE trips_db;
-SOURCE /setup/trips_db.sql;   -- path to the SQL script
 ```
-> Try to set up with full SQL script path
  
 **setup using command line**
 ```bash
-mysql -u root -p < setup/trips_db.sql
+mysql -u root -p < src/main/resources/setup/trips_db.sql
 ```
 
 #### 3. Configure MySQL DB in `application.properties`
@@ -198,9 +198,9 @@ java -jar target/spring-boot-journey-mate.jar
 ```bash    
 mvn test
 ```
-**Run Postman Collection**
-
-Import [`TripCollection.postman_collection.json`](/setup/TripCollection.postman_collection.json) into Postman and execute each API's requests.
+**Run Postman Collection:**
+- Download postman collection → [`TripCollection.postman_collection.json`](src/main/resources/setup/TripCollection.postman_collection.json)
+- Import this collection into Postman and execute each API's requests.
 
 <br>
 
@@ -211,8 +211,8 @@ Import [`TripCollection.postman_collection.json`](/setup/TripCollection.postman_
 - ✅ README.md having project details:
   - [Steps to run](#how-to-run) the application
   - [API endpoints](#-api-endpoints) with examples
-- ✅ Postman Collection (path: [`/setup/TripCollection.postman_collection.json`](/setup/TripCollection.postman_collection.json) )
-- ✅ Database Script (path: [`/setup/trips_db.sql`](/setup/trips_db.sql))
+- ✅ Postman Collection (resource path: [`/setup/TripCollection.postman_collection.json`](src/main/resources/setup/TripCollection.postman_collection.json) )
+- ✅ Database Script (resource path: [`/setup/trips_db.sql`](src/main/resources/setup/trips_db.sql))
 
 <br>
 

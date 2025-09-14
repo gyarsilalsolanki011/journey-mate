@@ -1,7 +1,7 @@
 package com.gyarsilalsolanki011.journeymate.repository;
 
-import com.gyarsilalsolanki011.journeymate.entity.Trip;
-import com.gyarsilalsolanki011.journeymate.enums.TripStatus;
+import com.gyarsilalsolanki011.journeymate.model.entity.Trip;
+import com.gyarsilalsolanki011.journeymate.model.enums.TripStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -1,7 +1,7 @@
 package com.gyarsilalsolanki011.journeymate.mapper;
 
-import com.gyarsilalsolanki011.journeymate.dto.TripDTO;
-import com.gyarsilalsolanki011.journeymate.entity.Trip;
+import com.gyarsilalsolanki011.journeymate.model.dto.TripDTO;
+import com.gyarsilalsolanki011.journeymate.model.entity.Trip;
 import com.gyarsilalsolanki011.journeymate.util.TripStatusParser;
 
 public class TripMapper {

@@ -1,9 +1,9 @@
 package com.gyarsilalsolanki011.journeymate.controller;
 
-import com.gyarsilalsolanki011.journeymate.dto.TripDTO;
-import com.gyarsilalsolanki011.journeymate.dto.TripSummaryDTO;
+import com.gyarsilalsolanki011.journeymate.model.dto.TripDTO;
+import com.gyarsilalsolanki011.journeymate.model.dto.TripSummaryDTO;
 import com.gyarsilalsolanki011.journeymate.service.TripService;
-import com.gyarsilalsolanki011.journeymate.validation.validator.ValidTripStatus;
+import com.gyarsilalsolanki011.journeymate.validation.annotations.ValidTripStatus;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

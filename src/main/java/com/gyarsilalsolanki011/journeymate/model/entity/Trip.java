@@ -1,6 +1,6 @@
-package com.gyarsilalsolanki011.journeymate.entity;
+package com.gyarsilalsolanki011.journeymate.model.entity;
 
-import com.gyarsilalsolanki011.journeymate.enums.TripStatus;
+import com.gyarsilalsolanki011.journeymate.model.enums.TripStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

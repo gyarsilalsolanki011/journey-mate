@@ -1,9 +1,9 @@
 package com.gyarsilalsolanki011.journeymate.service;
 
-import com.gyarsilalsolanki011.journeymate.dto.TripDTO;
-import com.gyarsilalsolanki011.journeymate.entity.Trip;
-import com.gyarsilalsolanki011.journeymate.dto.TripSummaryDTO;
-import com.gyarsilalsolanki011.journeymate.enums.TripStatus;
+import com.gyarsilalsolanki011.journeymate.model.dto.TripDTO;
+import com.gyarsilalsolanki011.journeymate.model.entity.Trip;
+import com.gyarsilalsolanki011.journeymate.model.dto.TripSummaryDTO;
+import com.gyarsilalsolanki011.journeymate.model.enums.TripStatus;
 import com.gyarsilalsolanki011.journeymate.exception.TripNotFoundException;
 import com.gyarsilalsolanki011.journeymate.exception.TripServiceException;
 import com.gyarsilalsolanki011.journeymate.mapper.TripMapper;

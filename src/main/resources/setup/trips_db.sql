@@ -1,9 +1,8 @@
 -- trips_db.sql
 -- Schema + Sample Data for Trip entity
 
--- 1. Drop database if exists and create a new one
-DROP DATABASE IF EXISTS trips_db; -- Optional
-CREATE DATABASE trips_db;
+-- 1. Create a new database if not exists
+CREATE DATABASE IF NOT EXISTS trips_db;
 USE trips_db;
 
 -- 2. Drop table if exists(safe for re-run)
@@ -28,10 +27,7 @@ INSERT INTO trips (destination, start_date, end_date, price, trip_status) VALUES
 ('New York', '2025-10-01', '2025-10-08', 1500.00, 'ONGOING'),
 ('Tokyo', '2025-07-15', '2025-07-25', 2000.00, 'COMPLETED'),
 ('Bali', '2025-12-01', '2025-12-10', 950.00, 'PLANNED'),
-('London', '2026-01-05', '2026-01-12', 1300.75, 'PLANNED');
-
--- 5. Additional sample data
-INSERT INTO trips (destination, start_date, end_date, price, trip_status) VALUES
+('London', '2026-01-05', '2026-01-12', 1300.75, 'PLANNED'),
 ('Sydney', '2025-11-20', '2025-11-30', 1800.00, 'PLANNED'),
 ('Rome', '2025-08-05', '2025-08-15', 1100.00, 'COMPLETED'),
 ('Cape Town', '2025-09-25', '2025-10-05', 1600.00, 'ONGOING'),

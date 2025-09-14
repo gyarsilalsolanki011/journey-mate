@@ -1,8 +1,8 @@
-package com.gyarsilalsolanki011.journeymate.validation;
+package com.gyarsilalsolanki011.journeymate.validation.validators;
 
-import com.gyarsilalsolanki011.journeymate.dto.TripDTO;
+import com.gyarsilalsolanki011.journeymate.model.dto.TripDTO;
 import com.gyarsilalsolanki011.journeymate.util.TripDateParser;
-import com.gyarsilalsolanki011.journeymate.validation.validator.ValidTripDates;
+import com.gyarsilalsolanki011.journeymate.validation.annotations.ValidTripDates;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
