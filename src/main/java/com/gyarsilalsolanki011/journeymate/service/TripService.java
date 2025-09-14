@@ -2,7 +2,7 @@ package com.gyarsilalsolanki011.journeymate.service;
 
 import com.gyarsilalsolanki011.journeymate.dto.TripDTO;
 import com.gyarsilalsolanki011.journeymate.entity.Trip;
-import com.gyarsilalsolanki011.journeymate.entity.TripSummary;
+import com.gyarsilalsolanki011.journeymate.dto.TripSummaryDTO;
 import com.gyarsilalsolanki011.journeymate.enums.TripStatus;
 import com.gyarsilalsolanki011.journeymate.exception.TripNotFoundException;
 import com.gyarsilalsolanki011.journeymate.exception.TripServiceException;
@@ -116,8 +116,8 @@ public class TripService {
         return trips.stream().map(TripMapper::toDto).toList();
     }
 
-    public TripSummary getTripSummary() {
-        return new TripSummary(
+    public TripSummaryDTO getTripSummary() {
+        return new TripSummaryDTO(
                 tripRepository.count(),
                 Optional.ofNullable(tripRepository.findMinPrice()).orElse(0.0),
                 Optional.ofNullable(tripRepository.findMaxPrice()).orElse(0.0),

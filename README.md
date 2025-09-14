@@ -55,17 +55,17 @@ journeymate/
 ## 🚀 API Endpoints
 **🔹 Trip Management**
 
-| Method     | Endpoint                                               | Description                                   |
-|------------|--------------------------------------------------------|-----------------------------------------------|
-| **POST**   | `/api/trips`                                           | Create a new trip                             |
-| **GET**    | `/api/trips`                                           | Get all trips (with pagination & sorting)     |
-| **GET**    | `/api/trips/{id}`                                      | Get trip by ID                                |
-| **PUT**    | `/api/trips/{id}`                                      | Update a trip                                 |
-| **DELETE** | `/api/trips/{id}`                                      | Delete a trip                                 |
-| **GET**    | `/api/trips/search?destination=Paris`                  | Search trips by destination                   |
-| **GET**    | `/api/trips/filter?status=PLANNED`                     | Filter trips by status                        |
-| **GET**    | `/api/trips/daterange?start=2025-09-01&end=2025-09-30` | Filter trips by date range                    |
-| **GET**    | `/api/trips/summary`                                   | Get trip summary (total, min, max, avg price) |
+| ***Method*** | ***Endpoint***                                         | ***Description***                             |
+|--------------|--------------------------------------------------------|-----------------------------------------------|
+| **POST**     | `/api/trips`                                           | Create a new trip                             |
+| **GET**      | `/api/trips`                                           | Get all trips (with pagination & sorting)     |
+| **GET**      | `/api/trips/{id}`                                      | Get trip by ID                                |
+| **PUT**      | `/api/trips/{id}`                                      | Update a trip                                 |
+| **DELETE**   | `/api/trips/{id}`                                      | Delete a trip                                 |
+| **GET**      | `/api/trips/search?destination=Paris`                  | Search trips by destination                   |
+| **GET**      | `/api/trips/filter?status=PLANNED`                     | Filter trips by status                        |
+| **GET**      | `/api/trips/daterange?start=2025-09-01&end=2025-09-30` | Filter trips by date range                    |
+| **GET**      | `/api/trips/summary`                                   | Get trip summary (total, min, max, avg price) |
 
 
 </br>**🔹 Example Requests**
@@ -158,10 +158,10 @@ cd DS-SEP-2025-178
 **setup using MySQL CLI**
 ```sql
 CREATE DATABASE trips_db;
-SOURCE /setup/tripdb.sql;   -- path to the SQL script
+SOURCE /setup/trips_db.sql;   -- path to the SQL script
 ```
 > Try to set up with full SQL script path
-> 
+ 
 **setup using command line**
 ```bash
 mysql -u root -p < setup/trips_db.sql

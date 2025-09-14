@@ -1,8 +1,6 @@
 package com.gyarsilalsolanki011.journeymate.entity;
 
-import com.gyarsilalsolanki011.journeymate.dto.TripDTO;
 import com.gyarsilalsolanki011.journeymate.enums.TripStatus;
-import com.gyarsilalsolanki011.journeymate.util.TripStatusParser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -39,12 +37,4 @@ public class Trip {
 
     @Enumerated(EnumType.STRING)
     private TripStatus tripStatus;
-  
-    public Trip(TripDTO tripDto) {
-        this.destination = tripDto.getDestination();
-        this.startDate = tripDto.getStartDate();
-        this.endDate = tripDto.getEndDate();
-        this.price = tripDto.getPrice();
-        this.tripStatus = TripStatusParser.fromString(tripDto.getTripStatus());
-    }
 }
