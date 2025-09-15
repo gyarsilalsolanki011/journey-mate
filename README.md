@@ -123,7 +123,7 @@ Global exceptions handled via `@ControllerAdvice:`
 - `ConstraintViolationException` → 400 BAD REQUEST (for custom validation errors)
 - `Generic Exception` → 500 INTERNAL SERVER ERROR (for unhandled exceptions)
 
-Response Examples:
+Error Response Examples:
 ```json
 {
     "path": "uri=/api/trips/9",
