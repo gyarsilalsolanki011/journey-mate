@@ -228,6 +228,5 @@ mvn test
 Join us to discuss ideas, share feedback, and coordinate contributions:  
 [![Join Discord](https://img.shields.io/discord/1405808666179014697?color=4CBB17&label=Join%20Us%20on%20Discord&logo=discord&logoColor=blue)](https://discord.gg/Zrc9x3ts)
 
-[![Sponsor me](https://img.shields.io/badge/Sponsor-gyarsilalsolanki011-blue?style=flat-square)](https://github.com/sponsors/gyarsilalsolanki011)<br/>
 ***If you find this project helpful, consider giving it a ⭐ to support!***
 
