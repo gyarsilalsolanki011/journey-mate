@@ -19,9 +19,11 @@ import java.time.LocalDate;
 public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "trip_id")
+    private Integer tripId;
 
     @NotBlank(message = "Destination is required")
+    @Column(nullable = false, length = 100)
     private String destination;
 
     @NotNull(message = "Start date is required")
@@ -32,9 +34,13 @@ public class Trip {
     @Column(name = "end_date", nullable = false)
     private LocalDate endDate;
 
+    @NotNull(message = "Price is required")
     @Positive(message = "Price must be positive")
+    @Column(nullable = false)
     private Double price;
 
+    @NotNull(message = "Trip status is required")
     @Enumerated(EnumType.STRING)
+    @Column(name = "trip_status", nullable = false, length = 20)
     private TripStatus tripStatus;
 }

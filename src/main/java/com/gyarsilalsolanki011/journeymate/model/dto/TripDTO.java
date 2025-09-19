@@ -16,19 +16,19 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @ValidTripDates
 public class TripDTO {
-    @NotBlank
+    @NotBlank(message = "Destination is required")
     private String destination;
 
-    @NotNull
+    @NotNull(message = "Start date must not null")
     private LocalDate startDate;
 
-    @NotNull
+    @NotNull(message = "End date must not null")
     private LocalDate endDate;
 
-    @Positive
+    @Positive(message = "Price must be positive")
     private Double price;
 
-    @NotBlank
     @ValidTripStatus
+    @NotBlank(message = "Trip status is required")
     private String tripStatus;
 }
