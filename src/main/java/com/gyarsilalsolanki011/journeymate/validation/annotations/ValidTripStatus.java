@@ -17,4 +17,3 @@ public @interface ValidTripStatus {
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
-

@@ -17,4 +17,3 @@ public @interface ValidTripDates {
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
-

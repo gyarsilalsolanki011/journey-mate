@@ -1,6 +1,5 @@
 package com.gyarsilalsolanki011.journeymate.exception;
 
-import com.gyarsilalsolanki011.journeymate.model.dto.ErrorResponse;
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
@@ -21,31 +20,33 @@ public class GlobalExceptionHandler {
     // Handle custom not found exceptions
     @Hidden
     @ExceptionHandler(TripNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleTripNotFoundException(
+    public ResponseEntity<Map<String, Object>> handleTripNotFoundException(
             TripNotFoundException ex, WebRequest request) {
 
-        ErrorResponse error = new ErrorResponse(
-                LocalDateTime.now(),
-                HttpStatus.NOT_FOUND.value(),
-                ex.getMessage(),
-                request.getDescription(false)
-        );
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("path", request.getDescription(false));
+        response.put("status", HttpStatus.NOT_FOUND.value());
+        response.put("error", "Trip Not Found Error");
+        response.put("details", ex.getMessage());
+
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
     // Handle custom service exceptions
     @Hidden
     @ExceptionHandler(TripServiceException.class)
-    public ResponseEntity<ErrorResponse> handleTripServiceException(
+    public ResponseEntity<Map<String, Object>> handleTripServiceException(
             TripServiceException ex, WebRequest request) {
 
-        ErrorResponse error = new ErrorResponse(
-                LocalDateTime.now(),
-                HttpStatus.BAD_REQUEST.value(), // changed from 500 → 400
-                ex.getMessage(),
-                request.getDescription(false)
-        );
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("path", request.getDescription(false));
+        response.put("status", HttpStatus.BAD_REQUEST.value());
+        response.put("error", "Trip Service Error");
+        response.put("details", ex.getMessage());
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
     // Handle validation errors from @Valid on DTOs
@@ -63,11 +64,14 @@ public class GlobalExceptionHandler {
                 errors.put(error.getObjectName(), error.getDefaultMessage())
         );
 
-        return ResponseEntity.badRequest().body(Map.of(
-                "path", request.getDescription(false),
-                "details", errors,
-                "error", "validation error"
-        ));
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("path", request.getDescription(false));
+        response.put("status", HttpStatus.BAD_REQUEST.value());
+        response.put("error", "Validation Failed");
+        response.put("details", errors);
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
     // Handle validation errors from @Validated on PathVariable/RequestParam
@@ -75,29 +79,33 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<Map<String, Object>> handleConstraintViolation(ConstraintViolationException ex, WebRequest request) {
         Map<String, Object> errors = new HashMap<>();
-        ex.getConstraintViolations().forEach(violation -> {
-            String field = violation.getPropertyPath().toString(); // e.g., "getTripsByStatus.status"
-            String message = violation.getMessage();
+        ex.getConstraintViolations().forEach(error -> {
+            String field = error.getPropertyPath().toString(); // e.g., "getTripsByStatus.status"
+            String message = error.getMessage();
             errors.put(field, message);
         });
 
-        return ResponseEntity.badRequest().body(Map.of(
-                "path", request.getDescription(false),
-                "details", errors,
-                "error", "Validation failed"
-        ));
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("path", request.getDescription(false));
+        response.put("status", HttpStatus.BAD_REQUEST.value());
+        response.put("error", "Validation Failed Error");
+        response.put("details", errors);
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
     @Hidden
     @ExceptionHandler(Exception.class) // fallback for all unhandled exceptions
-    public ResponseEntity<ErrorResponse> handleGeneral(Exception ex, WebRequest request) {
+    public ResponseEntity<Map<String, Object>> handleGeneral(Exception ex, WebRequest request) {
 
-        ErrorResponse error = new ErrorResponse(
-                LocalDateTime.now(),
-                HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                "An unexpected error occurred", // don’t leak raw ex.getMessage()
-                request.getDescription(false)
-        );
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("path", request.getDescription(false));
+        response.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+        response.put("error", "Unexpected error: " + ex.getClass().getName());
+        response.put("details", ex.getMessage());
+
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

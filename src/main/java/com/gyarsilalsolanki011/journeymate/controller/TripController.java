@@ -3,6 +3,7 @@ package com.gyarsilalsolanki011.journeymate.controller;
 import com.gyarsilalsolanki011.journeymate.model.dto.TripDTO;
 import com.gyarsilalsolanki011.journeymate.model.dto.TripSummaryDTO;
 import com.gyarsilalsolanki011.journeymate.service.TripService;
+import com.gyarsilalsolanki011.journeymate.validation.annotations.ValidDate;
 import com.gyarsilalsolanki011.journeymate.validation.annotations.ValidTripStatus;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -67,8 +68,8 @@ public class TripController {
 
     @GetMapping("/daterange")
     public ResponseEntity<List<TripDTO>> getTripsBetweenDates(
-            @NotBlank @RequestParam String startDate,
-            @NotBlank @RequestParam String endDate
+            @ValidDate @NotBlank @RequestParam String startDate,
+            @ValidDate @NotBlank @RequestParam String endDate
     ) {
         return ResponseEntity.ok().body(tripService.getTripsBetweenDates(startDate, endDate));
     }

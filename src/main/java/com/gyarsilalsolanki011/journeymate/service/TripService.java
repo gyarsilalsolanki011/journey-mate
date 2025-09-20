@@ -83,9 +83,6 @@ public class TripService {
     }
 
     public List<TripDTO> searchTripsByDestination(String destination) {
-        if (destination == null || destination.trim().isEmpty()) {
-            throw new TripServiceException("Destination parameter must not be null or empty");
-        }
         List<Trip> trips = tripRepository.findByDestinationContainingIgnoreCase(destination);
         if (trips.isEmpty()) {
             throw new TripNotFoundException("No trips found for destination: " + destination);
@@ -103,7 +100,7 @@ public class TripService {
         return trips.stream().map(TripMapper::toDto).toList();
     }
 
-    public List<TripDTO> getTripsBetweenDates(@ValidDate String startDate, @ValidDate String endDate) {
+    public List<TripDTO> getTripsBetweenDates(String startDate, String endDate) {
         LocalDate start = LocalDate.parse(startDate, DateTimeFormatter.ISO_LOCAL_DATE);
         LocalDate end = LocalDate.parse(endDate, DateTimeFormatter.ISO_LOCAL_DATE);
 
