@@ -6,7 +6,7 @@ CREATE DATABASE IF NOT EXISTS trips_db;
 USE trips_db;
 
 -- 2. Drop table if exists(safe for re-run)
-DROP TABLE IF EXISTS trips;
+DROP TABLE IF EXISTS trip;
 
 -- 3. Create trips table
 CREATE TABLE trip(

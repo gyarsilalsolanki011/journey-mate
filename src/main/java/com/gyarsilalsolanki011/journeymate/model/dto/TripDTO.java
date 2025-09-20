@@ -22,7 +22,7 @@ public class TripDTO {
     @Size(max = 100, message = "Destination can have at most 100 characters")
     private String destination;
 
-
+    @ValidDate
     @NotBlank(message = "Start date must not null")
     private String startDate;
 
