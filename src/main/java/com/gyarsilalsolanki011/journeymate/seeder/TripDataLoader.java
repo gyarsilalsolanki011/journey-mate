@@ -23,7 +23,7 @@ public class TripDataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Integer count = null;
         try {
-            count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM trips", Integer.class);
+            count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM trip", Integer.class);
         } catch (Exception e) {
             log.error("⚠️ Trips table not found, will create and insert data.");
         }

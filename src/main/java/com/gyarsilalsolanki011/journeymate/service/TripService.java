@@ -1,15 +1,15 @@
 package com.gyarsilalsolanki011.journeymate.service;
 
-import com.gyarsilalsolanki011.journeymate.model.dto.TripDTO;
-import com.gyarsilalsolanki011.journeymate.model.entity.Trip;
-import com.gyarsilalsolanki011.journeymate.model.dto.TripSummaryDTO;
-import com.gyarsilalsolanki011.journeymate.model.enums.TripStatus;
 import com.gyarsilalsolanki011.journeymate.exception.TripNotFoundException;
 import com.gyarsilalsolanki011.journeymate.exception.TripServiceException;
 import com.gyarsilalsolanki011.journeymate.mapper.TripMapper;
+import com.gyarsilalsolanki011.journeymate.model.dto.TripDTO;
+import com.gyarsilalsolanki011.journeymate.model.dto.TripSummaryDTO;
+import com.gyarsilalsolanki011.journeymate.model.entity.Trip;
+import com.gyarsilalsolanki011.journeymate.model.enums.TripStatus;
 import com.gyarsilalsolanki011.journeymate.repository.TripRepository;
-import com.gyarsilalsolanki011.journeymate.util.TripDateParser;
 import com.gyarsilalsolanki011.journeymate.util.TripStatusParser;
+import com.gyarsilalsolanki011.journeymate.validation.annotations.ValidDate;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +18,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,8 +65,8 @@ public class TripService {
                 .orElseThrow(() -> new TripNotFoundException("Trip not found with id: " + tripId));
 
         existingTrip.setDestination(tripDto.getDestination());
-        existingTrip.setStartDate(tripDto.getStartDate());
-        existingTrip.setEndDate(tripDto.getEndDate());
+        existingTrip.setStartDate(LocalDate.parse(tripDto.getStartDate(), DateTimeFormatter.ISO_LOCAL_DATE));
+        existingTrip.setEndDate(LocalDate.parse(tripDto.getEndDate(), DateTimeFormatter.ISO_LOCAL_DATE));
         existingTrip.setPrice(tripDto.getPrice());
         existingTrip.setTripStatus(TripStatusParser.fromString(tripDto.getTripStatus()));
 
@@ -102,9 +103,9 @@ public class TripService {
         return trips.stream().map(TripMapper::toDto).toList();
     }
 
-    public List<TripDTO> getTripsBetweenDates(String startDate, String endDate) {
-        LocalDate start = TripDateParser.parseDate(startDate, "startDate");
-        LocalDate end = TripDateParser.parseDate(endDate, "endDate");
+    public List<TripDTO> getTripsBetweenDates(@ValidDate String startDate, @ValidDate String endDate) {
+        LocalDate start = LocalDate.parse(startDate, DateTimeFormatter.ISO_LOCAL_DATE);
+        LocalDate end = LocalDate.parse(endDate, DateTimeFormatter.ISO_LOCAL_DATE);
 
         if (start.isAfter(end)) throw new TripServiceException("Start date must not be after end date");
 

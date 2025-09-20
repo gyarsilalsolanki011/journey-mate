@@ -9,20 +9,20 @@ USE trips_db;
 DROP TABLE IF EXISTS trips;
 
 -- 3. Create trips table
-CREATE TABLE trips(
-    id INT AUTO_INCREMENT,
+CREATE TABLE trip(
+    trip_id INT AUTO_INCREMENT,
     destination varchar(100) NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     trip_status ENUM('PLANNED', 'ONGOING', 'COMPLETED') DEFAULT 'PLANNED',
-    PRIMARY KEY (`id`),
+    PRIMARY KEY (`trip_id`),
     CONSTRAINT `chk_dates` CHECK ((`end_date` > `start_date`)),
     CONSTRAINT `chk_price` CHECK ((`price` >= 0))
 );
 
 -- 4. Insert sample data
-INSERT INTO trips (destination, start_date, end_date, price, trip_status) VALUES
+INSERT INTO trip (destination, start_date, end_date, price, trip_status) VALUES
 ('Paris', '2025-09-10', '2025-09-20', 1200.50, 'PLANNED'),
 ('New York', '2025-10-01', '2025-10-08', 1500.00, 'ONGOING'),
 ('Tokyo', '2025-07-15', '2025-07-25', 2000.00, 'COMPLETED'),
