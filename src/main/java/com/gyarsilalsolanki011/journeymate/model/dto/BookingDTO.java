@@ -10,8 +10,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookingDTO {
-    private Integer bookingId;
-
     private Trip trip;
 
     private Customer customer;
