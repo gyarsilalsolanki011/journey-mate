@@ -145,7 +145,7 @@ Error Response Examples:
 #### 1. Clone Repository
 ```bash
 git clone https://github.com/gyarsilalsolanki011/BT-JAVA-SEP-2025-178.git
-cd DS-SEP-2025-178
+cd BT-JAVA-SEP-2025-178
 ```
 
 #### 2. Set up MySQL Database
