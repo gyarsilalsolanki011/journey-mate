@@ -1,6 +1,6 @@
 <a name="journeymate"></a>
 # 🌍 JourneyMate – Trip Management Application
-**JourneyMate** is a *Spring Boot + Hibernate (JPA)* based Trip Management System built as part of the **DS-SEP-2025 Assignment**.
+**JourneyMate** is a *Spring Boot + Hibernate (JPA)* based Trip Management System built as part of the **BT-JAVA-SEP-2025 Assignment**.
 It provides ***REST APIs*** to *create, search, filter, update, delete,* and *summarize* trips with proper validation and exception handling.
 
 <br>
@@ -144,7 +144,7 @@ Error Response Examples:
 
 #### 1. Clone Repository
 ```bash
-git clone https://github.com/gyarsilalsolanki011/DS-SEP-2025-178.git
+git clone https://github.com/gyarsilalsolanki011/BT-JAVA-SEP-2025-178.git
 cd DS-SEP-2025-178
 ```
 
@@ -200,7 +200,7 @@ mvn test
 <a name="deliverables"></a>
 ## 📦 Deliverables (as per assignment)
 - ✅ Complete Spring Boot Project on GitHub
-- ✅ Public repository: DS-SEP-2025-178
+- ✅ Public repository: BT-JAVA-SEP-2025-178
 - ✅ README.md having project details:
   - [Steps to run](#-how-to-run) the application
   - [API endpoints](#-api-endpoints) with examples
