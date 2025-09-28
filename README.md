@@ -136,14 +136,6 @@ Error Response Examples:
     }
 }
 ```
-```json
-{
-  "timestamp": "2024-10-01T12:00:00.000+00:00",
-  "status": 404,
-  "message": "Trip not found with ID: 100",
-  "path": "/api/trips/100"
-}
-```
 
 <br>
 
