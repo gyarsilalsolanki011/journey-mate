@@ -6,10 +6,10 @@ CREATE DATABASE IF NOT EXISTS trips_db;
 USE trips_db;
 
 -- 2. Drop table if exists(safe for re-run)
-DROP TABLE IF EXISTS trip;
+-- DROP TABLE IF EXISTS trip;
 
 -- 3. Create trips table
-CREATE TABLE trip(
+CREATE TABLE IF NOT EXISTS trip(
     trip_id INT AUTO_INCREMENT,
     destination varchar(100) NOT NULL,
     start_date DATE NOT NULL,
