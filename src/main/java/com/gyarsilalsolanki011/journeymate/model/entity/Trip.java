@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "trip_id")
+    @Column(name = "trip_id", nullable = false)
     private Integer tripId;
 
     @NotBlank(message = "Destination is required")
