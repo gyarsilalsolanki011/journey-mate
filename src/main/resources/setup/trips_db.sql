@@ -10,13 +10,13 @@ DROP TABLE IF EXISTS trips;
 
 -- 3. Create trips table
 CREATE TABLE trips(
-    id INT AUTO_INCREMENT,
+    trip_id INT AUTO_INCREMENT,
     destination varchar(100) NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     trip_status ENUM('PLANNED', 'ONGOING', 'COMPLETED') DEFAULT 'PLANNED',
-    PRIMARY KEY (`id`),
+    PRIMARY KEY (`trip_id`),
     CONSTRAINT `chk_dates` CHECK ((`end_date` > `start_date`)),
     CONSTRAINT `chk_price` CHECK ((`price` >= 0))
 );
