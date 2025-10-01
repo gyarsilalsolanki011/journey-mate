@@ -166,6 +166,7 @@ CREATE DATABASE trips_db;
 ```bash
 mysql -u root -p < src/main/resources/setup/trips_db.sql
 ```
+> Or setup using dev profile 
 
 #### 3. Configure MySQL DB in `application.properties`
 ```properties
