@@ -202,8 +202,8 @@ mvn test
 - ✅ Complete Spring Boot Project on GitHub
 - ✅ Public repository: BT-JAVA-SEP-2025-178
 - ✅ README.md having project details:
-  - [Steps to run](#-how-to-run) the application
-  - [API endpoints](#-api-endpoints) with examples
+  - [Steps to run](#how-to-run) the application
+  - [API endpoints](#api-endpoints) with examples
 - ✅ Postman Collection (resource path: [`/setup/TripCollection.postman_collection.json`](src/main/resources/setup/TripCollection.postman_collection.json) )
 - ✅ Database Script (resource path: [`/setup/trips_db.sql`](src/main/resources/setup/trips_db.sql))
 
