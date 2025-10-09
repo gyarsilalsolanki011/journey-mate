@@ -158,6 +158,7 @@ CREATE DATABASE trips_db;
 ```bash
 mysql -u root -p < src/main/resources/setup/trips_db.sql
 ```
+> [!TIP]  
 > Setup using dev profile via Seeder(optional)
 
 #### 3. Configure MySQL DB in `application.properties`
@@ -176,7 +177,6 @@ OR
 mvn package
 java -jar target/spring-boot-journey-mate.jar
 ```
->Or run project manually(by clicking run button)
 
 #### 5. Access APIs:
 - Base URL → `http://localhost:8080/api/trips`
