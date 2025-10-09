@@ -136,14 +136,6 @@ Error Response Examples:
     }
 }
 ```
-```json
-{
-  "timestamp": "2024-10-01T12:00:00.000+00:00",
-  "status": 404,
-  "message": "Trip not found with ID: 100",
-  "path": "/api/trips/100"
-}
-```
 
 <br>
 
@@ -166,7 +158,8 @@ CREATE DATABASE trips_db;
 ```bash
 mysql -u root -p < src/main/resources/setup/trips_db.sql
 ```
-> Or setup using dev profile 
+> [!TIP]
+> Or setup using dev profile(Optional) 
 
 #### 3. Configure MySQL DB in `application.properties`
 ```properties
@@ -184,7 +177,6 @@ OR
 mvn package
 java -jar target/spring-boot-journey-mate.jar
 ```
->Or run project manually(by clicking run button)
 
 #### 5. Access APIs:
 - Base URL → `http://localhost:8080/api/trips`
