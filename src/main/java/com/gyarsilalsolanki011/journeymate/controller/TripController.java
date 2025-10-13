@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/api/trips")
-@Validated
 public class TripController {
     private final TripService tripService;
     public TripController(TripService tripService) {

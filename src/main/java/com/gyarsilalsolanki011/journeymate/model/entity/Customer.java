@@ -20,6 +20,9 @@ public class Customer {
     @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;
 
+    @Column(name = "password", nullable = false, length = 15)
+    private String password;
+
     @Column(name = "phone", unique = true, length = 15)
     private String phone;
 }
