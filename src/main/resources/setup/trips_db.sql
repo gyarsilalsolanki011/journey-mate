@@ -6,10 +6,10 @@ CREATE DATABASE IF NOT EXISTS trips_db;
 USE trips_db;
 
 -- 2. Drop table if exists(safe for re-run)
--- DROP TABLE IF EXISTS trip;
+DROP TABLE IF EXISTS trips;
 
 -- 3. Create trips table
-CREATE TABLE IF NOT EXISTS trip(
+CREATE TABLE trips(
     trip_id INT AUTO_INCREMENT,
     destination varchar(100) NOT NULL,
     start_date DATE NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS trip(
 );
 
 -- 4. Insert sample data
-INSERT INTO trip (destination, start_date, end_date, price, trip_status) VALUES
+INSERT INTO trips (destination, start_date, end_date, price, trip_status) VALUES
 ('Paris', '2025-09-10', '2025-09-20', 1200.50, 'PLANNED'),
 ('New York', '2025-10-01', '2025-10-08', 1500.00, 'ONGOING'),
 ('Tokyo', '2025-07-15', '2025-07-25', 2000.00, 'COMPLETED'),
