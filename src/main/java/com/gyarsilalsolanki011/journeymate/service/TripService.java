@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TripService {
+public class TripService implements com.gyarsilalsolanki011.journeymate.repository.TripService {
 
     private final TripRepository tripRepository;
 
@@ -31,6 +31,7 @@ public class TripService {
         this.tripRepository = tripRepository;
     }
 
+    @Override
     public String createTrip(TripDTO tripDto) {
 
         Trip trip = TripMapper.toEntity(tripDto);
@@ -40,6 +41,7 @@ public class TripService {
     }
 
 
+    @Override
     public Page<TripDTO> getAllTrips(int page, int size, String[] sort) {
         if (sort.length < 2) {
             throw new TripServiceException("Sort parameter must include field and direction");
@@ -53,13 +55,14 @@ public class TripService {
         return tripRepository.findAll(pageable).map(TripMapper::toDto);
     }
 
+    @Override
     public TripDTO getTripById(int id) {
         Trip trip = tripRepository.findById(id)
                 .orElseThrow(() -> new TripNotFoundException("Trip not found with id: " + id));
         return TripMapper.toDto(trip);
     }
 
-    @Transactional
+    @Override @Transactional
     public TripDTO updateTrip(Integer tripId, TripDTO tripDto) {
         Trip existingTrip = tripRepository.findById(tripId)
                 .orElseThrow(() -> new TripNotFoundException("Trip not found with id: " + tripId));
@@ -73,7 +76,7 @@ public class TripService {
         return TripMapper.toDto(tripRepository.save(existingTrip));
     }
 
-    @Transactional
+    @Override @Transactional
     public String deleteTrip(Integer tripId) {
         Trip existingTrip = tripRepository.findById(tripId)
                 .orElseThrow(() -> new TripNotFoundException("Trip not found with id: " + tripId));
@@ -82,6 +85,7 @@ public class TripService {
         return "Trip deleted successfully";
     }
 
+    @Override
     public List<TripDTO> searchTripsByDestination(String destination) {
         List<Trip> trips = tripRepository.findByDestinationContainingIgnoreCase(destination);
         if (trips.isEmpty()) {
@@ -90,6 +94,7 @@ public class TripService {
         return trips.stream().map(TripMapper::toDto).toList();
     }
 
+    @Override
     public List<TripDTO> getTripsByStatus(String status) {
         TripStatus tripStatus = TripStatusParser.fromString(status);
         List<Trip> trips = tripRepository.findByTripStatus(tripStatus);
@@ -100,6 +105,7 @@ public class TripService {
         return trips.stream().map(TripMapper::toDto).toList();
     }
 
+    @Override
     public List<TripDTO> getTripsBetweenDates(String startDate, String endDate) {
         LocalDate start = LocalDate.parse(startDate, DateTimeFormatter.ISO_LOCAL_DATE);
         LocalDate end = LocalDate.parse(endDate, DateTimeFormatter.ISO_LOCAL_DATE);
@@ -114,6 +120,7 @@ public class TripService {
         return trips.stream().map(TripMapper::toDto).toList();
     }
 
+    @Override
     public TripSummaryDTO getTripSummary() {
         return new TripSummaryDTO(
                 tripRepository.count(),
