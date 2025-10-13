@@ -161,6 +161,7 @@ mysql -u root -p < src/main/resources/setup/trips_db.sql
 > [!TIP]  
 > Setup using dev profile via Seeder(optional)
 
+
 #### 3. Configure MySQL DB in `application.properties`
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/trips_db
