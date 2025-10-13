@@ -33,6 +33,3 @@ INSERT INTO trip (destination, start_date, end_date, price, trip_status) VALUES
 ('Cape Town', '2025-09-25', '2025-10-05', 1600.00, 'ONGOING'),
 ('Dubai', '2025-12-15', '2025-12-22', 1400.00, 'PLANNED'),
 ('Amsterdam', '2026-02-10', '2026-02-17', 1250.00, 'PLANNED');
-
-
-
