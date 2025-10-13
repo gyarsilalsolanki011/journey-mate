@@ -9,7 +9,6 @@ import com.gyarsilalsolanki011.journeymate.model.entity.Trip;
 import com.gyarsilalsolanki011.journeymate.model.enums.TripStatus;
 import com.gyarsilalsolanki011.journeymate.repository.TripRepository;
 import com.gyarsilalsolanki011.journeymate.util.TripStatusParser;
-import com.gyarsilalsolanki011.journeymate.validation.annotations.ValidDate;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TripService implements com.gyarsilalsolanki011.journeymate.repository.TripService {
+public class TripService implements com.gyarsilalsolanki011.journeymate.service.Repository.TripService {
 
     private final TripRepository tripRepository;
 

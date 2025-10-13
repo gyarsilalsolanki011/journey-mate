@@ -1,10 +1,8 @@
-package com.gyarsilalsolanki011.journeymate.repository;
+package com.gyarsilalsolanki011.journeymate.service.Repository;
 
 import com.gyarsilalsolanki011.journeymate.model.dto.TripDTO;
 import com.gyarsilalsolanki011.journeymate.model.dto.TripSummaryDTO;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 
