@@ -1,13 +1,10 @@
 package com.gyarsilalsolanki011.journeymate.service;
 
 import com.gyarsilalsolanki011.journeymate.model.dto.CustomerDTO;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CustomerService implements com.gyarsilalsolanki011.journeymate.service.Repository.CustomerService {
-    @Override
-    public String registerCustomer(CustomerDTO customerDTO) {
-        return null;
-    }
-
     @Override
     public CustomerDTO getCustomerById(Integer customerId) {
         return null;
@@ -19,7 +16,7 @@ public class CustomerService implements com.gyarsilalsolanki011.journeymate.serv
     }
 
     @Override
-    public String deleteAccount() {
+    public String deleteCustomer() {
         return null;
     }
 }

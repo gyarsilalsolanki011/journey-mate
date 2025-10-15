@@ -19,15 +19,15 @@ public class GlobalExceptionHandler {
 
     // Handle custom not found exceptions
     @Hidden
-    @ExceptionHandler(TripNotFoundException.class)
+    @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Map<String, Object>> handleTripNotFoundException(
-            TripNotFoundException ex, WebRequest request) {
+            EntityNotFoundException ex, WebRequest request) {
 
         Map<String, Object> response = new HashMap<>();
         response.put("timestamp", LocalDateTime.now());
         response.put("path", request.getDescription(false));
         response.put("status", HttpStatus.NOT_FOUND.value());
-        response.put("error", "Trip Not Found Error");
+        response.put("error", "Entity Not Found Error");
         response.put("details", ex.getMessage());
 
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
@@ -35,15 +35,15 @@ public class GlobalExceptionHandler {
 
     // Handle custom service exceptions
     @Hidden
-    @ExceptionHandler(TripServiceException.class)
+    @ExceptionHandler(InternalServiceException.class)
     public ResponseEntity<Map<String, Object>> handleTripServiceException(
-            TripServiceException ex, WebRequest request) {
+            InternalServiceException ex, WebRequest request) {
 
         Map<String, Object> response = new HashMap<>();
         response.put("timestamp", LocalDateTime.now());
         response.put("path", request.getDescription(false));
         response.put("status", HttpStatus.BAD_REQUEST.value());
-        response.put("error", "Trip Service Error");
+        response.put("error", "Internal Service Error");
         response.put("details", ex.getMessage());
 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);

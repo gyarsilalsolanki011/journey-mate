@@ -1,8 +1,8 @@
 package com.gyarsilalsolanki011.journeymate.controller;
 
 import com.gyarsilalsolanki011.journeymate.model.dto.TripDTO;
-import com.gyarsilalsolanki011.journeymate.model.dto.TripSummaryDTO;
-import com.gyarsilalsolanki011.journeymate.service.TripService;
+import com.gyarsilalsolanki011.journeymate.model.dto.TripSummary;
+import com.gyarsilalsolanki011.journeymate.service.Repository.TripService;
 import com.gyarsilalsolanki011.journeymate.validation.annotations.ValidDate;
 import com.gyarsilalsolanki011.journeymate.validation.annotations.ValidTripStatus;
 import jakarta.validation.Valid;
@@ -75,7 +75,7 @@ public class TripController {
     }
 
     @GetMapping("/summary")
-    public ResponseEntity<TripSummaryDTO> getTripSummary() {
+    public ResponseEntity<TripSummary> getTripSummary() {
         return ResponseEntity.ok().body(tripService.getTripSummary());
     }
 

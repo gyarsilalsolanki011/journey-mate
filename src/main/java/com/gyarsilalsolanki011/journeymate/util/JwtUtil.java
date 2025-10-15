@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -49,9 +50,13 @@ public class JwtUtil {
                 .getPayload();
     }
 
-    public String generateToken(String email){
+    public String generateToken(Authentication authentication){
         Map<String, Object> claims = new HashMap<>();
-        return  createToken(claims, email);
+
+        if (!authentication.getAuthorities().isEmpty()) {
+            claims.put("role", authentication.getAuthorities().iterator().next().getAuthority());
+        }
+        return  createToken(claims, authentication.getName());
     }
 
     public String extractEmail(String token){

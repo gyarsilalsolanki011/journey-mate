@@ -1,6 +1,6 @@
 package com.gyarsilalsolanki011.journeymate.service;
 
-import com.gyarsilalsolanki011.journeymate.exception.TripNotFoundException;
+import com.gyarsilalsolanki011.journeymate.exception.EntityNotFoundException;
 import com.gyarsilalsolanki011.journeymate.repository.TripRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,7 +39,7 @@ class TripServiceTest {
                 .thenReturn(Collections.emptyList());
 
         // Act & Assert
-        assertThrows(TripNotFoundException.class, () ->
+        assertThrows(EntityNotFoundException.class, () ->
                 tripService.getTripsBetweenDates("2025-01-01", "2025-01-10")
         );
     }
