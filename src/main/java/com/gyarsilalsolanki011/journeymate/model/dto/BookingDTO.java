@@ -12,7 +12,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookingDTO {
-    @NotNull(message = "Booking date is required")
+    private Integer bookingId;
+
+    private Integer tripId;
+
     private LocalDate bookingDate;
 
     @NotNull(message = "Seats count is required")

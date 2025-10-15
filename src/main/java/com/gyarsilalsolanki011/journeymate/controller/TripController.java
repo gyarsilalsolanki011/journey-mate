@@ -66,7 +66,7 @@ public class TripController {
         return ResponseEntity.ok().body(tripService.getTripsByStatus(tripStatus));
     }
 
-    @GetMapping("/daterange")
+    @GetMapping("/date-range")
     public ResponseEntity<List<TripDTO>> getTripsBetweenDates(
             @ValidDate @NotBlank @RequestParam String startDate,
             @ValidDate @NotBlank @RequestParam String endDate

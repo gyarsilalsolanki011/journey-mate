@@ -4,7 +4,7 @@ import com.gyarsilalsolanki011.journeymate.model.dto.CustomerDTO;
 
 public class CustomerService implements com.gyarsilalsolanki011.journeymate.service.Repository.CustomerService {
     @Override
-    public String saveCustomer(CustomerDTO customerDTO) {
+    public String registerCustomer(CustomerDTO customerDTO) {
         return null;
     }
 
