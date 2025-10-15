@@ -1,9 +1,8 @@
 package com.gyarsilalsolanki011.journeymate.model.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 
@@ -17,7 +16,7 @@ import java.time.LocalDate;
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "booking_id")
+    @Column(name = "booking_id", nullable = false)
     private Integer bookingId;
 
     // Many bookings can be for one trip
@@ -30,20 +29,10 @@ public class Booking {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    @NotNull(message = "Booking date is required")
-    @Column(name = "booking_date", nullable = false)
+    @Column(name = "booking_date", updatable = false)
+    @CreationTimestamp
     private LocalDate bookingDate;
 
-    @NotNull(message = "Seats count is required")
-    @Positive(message = "Seats must be greater than 0")
     @Column(nullable = false)
     private Integer seats;
-
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDate createdAt;
-
-    @PrePersist
-    public void prePersist() {
-        this.createdAt = LocalDate.now();
-    }
 }

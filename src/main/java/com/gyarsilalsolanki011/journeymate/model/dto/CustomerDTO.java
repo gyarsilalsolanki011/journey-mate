@@ -7,7 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerDTO {
-
     @NotBlank(message = "Full Name is required")
     @Size(max = 50, message = "Full Name can have at most 50 characters")
     private String fullName;

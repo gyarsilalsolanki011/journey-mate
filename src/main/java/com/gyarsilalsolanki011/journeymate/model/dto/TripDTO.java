@@ -18,6 +18,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TripDTO {
+    private Integer tripId;
+
     @NotBlank(message = "Destination is required")
     @Size(max = 100, message = "Destination can have at most 100 characters")
     private String destination;

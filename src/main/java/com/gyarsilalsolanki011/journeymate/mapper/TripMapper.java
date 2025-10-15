@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 public class TripMapper {
     public static TripDTO toDto(Trip trip) {
         TripDTO dto = new TripDTO();
+        dto.setTripId(trip.getTripId());
         dto.setDestination(trip.getDestination());
         dto.setStartDate(trip.getStartDate().toString());
         dto.setEndDate(trip.getEndDate().toString());

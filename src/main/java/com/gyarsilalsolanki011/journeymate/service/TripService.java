@@ -1,10 +1,10 @@
 package com.gyarsilalsolanki011.journeymate.service;
 
-import com.gyarsilalsolanki011.journeymate.exception.TripNotFoundException;
-import com.gyarsilalsolanki011.journeymate.exception.TripServiceException;
+import com.gyarsilalsolanki011.journeymate.exception.EntityNotFoundException;
+import com.gyarsilalsolanki011.journeymate.exception.InternalServiceException;
 import com.gyarsilalsolanki011.journeymate.mapper.TripMapper;
 import com.gyarsilalsolanki011.journeymate.model.dto.TripDTO;
-import com.gyarsilalsolanki011.journeymate.model.dto.TripSummaryDTO;
+import com.gyarsilalsolanki011.journeymate.model.dto.TripSummary;
 import com.gyarsilalsolanki011.journeymate.model.entity.Trip;
 import com.gyarsilalsolanki011.journeymate.model.enums.TripStatus;
 import com.gyarsilalsolanki011.journeymate.repository.TripRepository;
@@ -32,7 +32,6 @@ public class TripService implements com.gyarsilalsolanki011.journeymate.service.
 
     @Override
     public String createTrip(TripDTO tripDto) {
-
         Trip trip = TripMapper.toEntity(tripDto);
 
         tripRepository.save(trip);
@@ -43,7 +42,7 @@ public class TripService implements com.gyarsilalsolanki011.journeymate.service.
     @Override
     public Page<TripDTO> getAllTrips(int page, int size, String[] sort) {
         if (sort.length < 2) {
-            throw new TripServiceException("Sort parameter must include field and direction");
+            throw new InternalServiceException("Sort parameter must include field and direction");
         }
 
         Sort.Direction direction = sort[1].equalsIgnoreCase("desc")
@@ -57,14 +56,14 @@ public class TripService implements com.gyarsilalsolanki011.journeymate.service.
     @Override
     public TripDTO getTripById(int id) {
         Trip trip = tripRepository.findById(id)
-                .orElseThrow(() -> new TripNotFoundException("Trip not found with id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Trip not found with id: " + id));
         return TripMapper.toDto(trip);
     }
 
     @Override @Transactional
     public TripDTO updateTrip(Integer tripId, TripDTO tripDto) {
         Trip existingTrip = tripRepository.findById(tripId)
-                .orElseThrow(() -> new TripNotFoundException("Trip not found with id: " + tripId));
+                .orElseThrow(() -> new EntityNotFoundException("Trip not found with id: " + tripId));
 
         existingTrip.setDestination(tripDto.getDestination());
         existingTrip.setStartDate(LocalDate.parse(tripDto.getStartDate(), DateTimeFormatter.ISO_LOCAL_DATE));
@@ -78,7 +77,7 @@ public class TripService implements com.gyarsilalsolanki011.journeymate.service.
     @Override @Transactional
     public String deleteTrip(Integer tripId) {
         Trip existingTrip = tripRepository.findById(tripId)
-                .orElseThrow(() -> new TripNotFoundException("Trip not found with id: " + tripId));
+                .orElseThrow(() -> new EntityNotFoundException("Trip not found with id: " + tripId));
 
         tripRepository.delete(existingTrip);
         return "Trip deleted successfully";
@@ -88,7 +87,7 @@ public class TripService implements com.gyarsilalsolanki011.journeymate.service.
     public List<TripDTO> searchTripsByDestination(String destination) {
         List<Trip> trips = tripRepository.findByDestinationContainingIgnoreCase(destination);
         if (trips.isEmpty()) {
-            throw new TripNotFoundException("No trips found for destination: " + destination);
+            throw new EntityNotFoundException("No trips found for destination: " + destination);
         }
         return trips.stream().map(TripMapper::toDto).toList();
     }
@@ -99,7 +98,7 @@ public class TripService implements com.gyarsilalsolanki011.journeymate.service.
         List<Trip> trips = tripRepository.findByTripStatus(tripStatus);
 
         if (trips.isEmpty()) {
-            throw new TripNotFoundException("No trips found with status: " + status);
+            throw new EntityNotFoundException("No trips found with status: " + status);
         }
         return trips.stream().map(TripMapper::toDto).toList();
     }
@@ -109,19 +108,19 @@ public class TripService implements com.gyarsilalsolanki011.journeymate.service.
         LocalDate start = LocalDate.parse(startDate, DateTimeFormatter.ISO_LOCAL_DATE);
         LocalDate end = LocalDate.parse(endDate, DateTimeFormatter.ISO_LOCAL_DATE);
 
-        if (start.isAfter(end)) throw new TripServiceException("Start date must not be after end date");
+        if (start.isAfter(end)) throw new InternalServiceException("Start date must not be after end date");
 
         List<Trip> trips = tripRepository.findByStartDateGreaterThanEqualAndEndDateLessThanEqual(start, end);
         if (trips.isEmpty()) {
-            throw new TripNotFoundException("No trips found between " + startDate + " and " + endDate);
+            throw new EntityNotFoundException("No trips found between " + startDate + " and " + endDate);
         }
 
         return trips.stream().map(TripMapper::toDto).toList();
     }
 
     @Override
-    public TripSummaryDTO getTripSummary() {
-        return new TripSummaryDTO(
+    public TripSummary getTripSummary() {
+        return new TripSummary(
                 tripRepository.count(),
                 Optional.ofNullable(tripRepository.findMinPrice()).orElse(0.0),
                 Optional.ofNullable(tripRepository.findMaxPrice()).orElse(0.0),

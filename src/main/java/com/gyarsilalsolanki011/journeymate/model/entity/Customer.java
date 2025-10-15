@@ -8,7 +8,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,11 +17,11 @@ import java.time.LocalDateTime;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id")
+    @Column(name = "customer_id", nullable = false)
     private Integer customerId;
 
-    @Column(name = "name", nullable = false, length = 50)
-    private String name;
+    @Column(name = "full_name", nullable = false, length = 50)
+    private String fullName;
 
     @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;

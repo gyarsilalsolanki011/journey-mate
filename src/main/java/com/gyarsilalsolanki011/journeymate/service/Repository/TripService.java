@@ -1,7 +1,7 @@
 package com.gyarsilalsolanki011.journeymate.service.Repository;
 
 import com.gyarsilalsolanki011.journeymate.model.dto.TripDTO;
-import com.gyarsilalsolanki011.journeymate.model.dto.TripSummaryDTO;
+import com.gyarsilalsolanki011.journeymate.model.dto.TripSummary;
 import org.springframework.data.domain.Page;
 import java.util.List;
 
@@ -15,5 +15,5 @@ public interface TripService {
     List<TripDTO> searchTripsByDestination(String destination);
     List<TripDTO> getTripsByStatus(String status);
     List<TripDTO> getTripsBetweenDates(String startDate, String endDate);
-    TripSummaryDTO getTripSummary();
+    TripSummary getTripSummary();
 }

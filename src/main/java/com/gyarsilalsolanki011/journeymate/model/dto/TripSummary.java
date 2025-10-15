@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TripSummaryDTO {
+public class TripSummary {
     private long totalTrips;
     private double minPrice;
     private double maxPrice;
