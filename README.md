@@ -1,7 +1,9 @@
 <a name="journeymate"></a>
 # 🌍 JourneyMate – Trip Management Application
-**JourneyMate** is a *Spring Boot + Hibernate (JPA)* based Trip Management System built as part of the **BT-JAVA-SEP-2025 Assignment**.
+**JourneyMate** is a *Spring Boot + Hibernate (JPA)* based Trip Management System built as the advance version of [Gyarsilal Solanki's](https://github.com/gyarsilalsolanki011/BT-JAVA-SEP-2025-178.git) Assignment.
 It provides ***REST APIs*** to *create, search, filter, update, delete,* and *summarize* trips with proper validation and exception handling.
+> [!NOTE]
+> This version is not the part of assignment but implement further to make proper Trip management system.
 
 <br>
 
@@ -195,18 +197,6 @@ mvn test
 **Run Postman Collection:**
 - Download postman collection → [`TripCollection.postman_collection.json`](src/main/resources/setup/TripCollection.postman_collection.json)
 - Import this collection into Postman and execute each API's requests.
-
-<br>
-
-<a name="deliverables"></a>
-## 📦 Deliverables (as per assignment)
-- ✅ Complete Spring Boot Project on GitHub
-- ✅ Public repository: BT-JAVA-SEP-2025-178
-- ✅ README.md having project details:
-  - [Steps to run](#how-to-run) the application
-  - [API endpoints](#api-endpoints) with examples
-- ✅ Postman Collection (resource path: [`/setup/TripCollection.postman_collection.json`](src/main/resources/setup/TripCollection.postman_collection.json) )
-- ✅ Database Script (resource path: [`/setup/trips_db.sql`](src/main/resources/setup/trips_db.sql))
 
 <br>
 
