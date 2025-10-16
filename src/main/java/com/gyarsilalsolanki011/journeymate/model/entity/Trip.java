@@ -3,6 +3,7 @@ package com.gyarsilalsolanki011.journeymate.model.entity;
 import com.gyarsilalsolanki011.journeymate.model.enums.TripStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 
@@ -33,4 +34,8 @@ public class Trip {
     @Enumerated(EnumType.STRING)
     @Column(name = "trip_status", nullable = false, length = 20)
     private TripStatus tripStatus;
+
+    @Column(name = "created_at", updatable = false)
+    @CreationTimestamp
+    private LocalDate createdAt;
 }
