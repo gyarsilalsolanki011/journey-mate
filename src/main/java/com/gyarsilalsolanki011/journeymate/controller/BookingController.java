@@ -22,7 +22,7 @@ public class BookingController {
             @RequestBody BookingDTO bookingDTO,
             Principal principal
     ) {
-        return ResponseEntity.ok(bookingService.tripBooking(bookingDTO));
+        return ResponseEntity.ok(bookingService.tripBooking(bookingDTO, principal));
     }
 
     @DeleteMapping("/cancel/{bookingId}")
@@ -30,7 +30,7 @@ public class BookingController {
             @NotNull @PathVariable Integer bookingId,
             Principal principal
     ) {
-       return ResponseEntity.ok(bookingService.cancelBooking(bookingId));
+       return ResponseEntity.ok(bookingService.cancelBooking(bookingId, principal));
     }
 
     @GetMapping("/{bookingId}")
@@ -38,6 +38,6 @@ public class BookingController {
             @NotNull @PathVariable Integer bookingId,
             Principal principal
     ) {
-        return ResponseEntity.ok(bookingService.getBooking(bookingId));
+        return ResponseEntity.ok(bookingService.getBooking(bookingId, principal));
     }
 }
