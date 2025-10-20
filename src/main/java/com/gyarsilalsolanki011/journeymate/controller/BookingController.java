@@ -2,6 +2,7 @@ package com.gyarsilalsolanki011.journeymate.controller;
 
 import com.gyarsilalsolanki011.journeymate.model.dto.BookingDTO;
 import com.gyarsilalsolanki011.journeymate.service.Repository.BookingService;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class BookingController {
 
     @DeleteMapping("/cancel/{bookingId}")
     public ResponseEntity<String> cancelBooking(
-            @PathVariable Integer bookingId,
+            @NotNull @PathVariable Integer bookingId,
             Principal principal
     ) {
        return ResponseEntity.ok(bookingService.cancelBooking(bookingId));
@@ -34,7 +35,7 @@ public class BookingController {
 
     @GetMapping("/{bookingId}")
     public ResponseEntity<BookingDTO> getBooking(
-            @PathVariable Integer bookingId,
+            @NotNull @PathVariable Integer bookingId,
             Principal principal
     ) {
         return ResponseEntity.ok(bookingService.getBooking(bookingId));
