@@ -19,12 +19,13 @@ public class AuthController {
     public ResponseEntity<String> healthCheck(){
         return ResponseEntity.ok("I am Healthy");
     }
+
     @PostMapping("/register")
     public ResponseEntity<String> registerCustomer(@RequestBody CustomerDTO customerDTO){
         return ResponseEntity.ok(authService.registerCustomer(customerDTO));
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<LoginResponse> loginCustomer(@RequestParam String email, @RequestParam String password){
         return ResponseEntity.ok(authService.loginCustomer(email, password));
     }
