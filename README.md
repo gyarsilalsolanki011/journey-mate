@@ -3,7 +3,7 @@
 **JourneyMate** is a *Spring Boot + Hibernate (JPA)* based Trip Management System built as the advance version of [Gyarsilal Solanki's](https://github.com/gyarsilalsolanki011/BT-JAVA-SEP-2025-178.git) Assignment.
 It provides ***REST APIs*** to *create, search, filter, update, delete,* and *summarize* trips with proper validation and exception handling.
 > [!NOTE]
-> This version is not the part of assignment but implement further to make proper Trip management system.
+> This version is not the part of assignment but implemented further to make proper Trip management system.
 
 <br>
 
